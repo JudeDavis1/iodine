@@ -14,6 +14,7 @@ public:
 
 	Window(const char* title, int width=500, int height=400);
 
+	// Create a new ImGui frame (sep)
 	void NewFrame();
 	void Render();
 	void Update();
