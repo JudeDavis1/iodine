@@ -3,7 +3,7 @@ Version: 2021-11-17
 Depends: egl-registry
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 76711fdc057109ab19857d7a37541e9b17f1be9a8d37b98a7057b6987820bb66
+Abi: 07b0342e3979c092bef9776c811c286d361732795b9ea620a2cc9a518439610c
 Description: the API and Extension registries for the OpenGL family APIs
 Type: Port
 Status: install ok installed
