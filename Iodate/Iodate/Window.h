@@ -11,7 +11,7 @@ class Window
 {
 public:
 	GLFWwindow* gl_window;
-
+	
 	Window(const char* title, int width=500, int height=400);
 
 	// Create a new ImGui frame (sep)

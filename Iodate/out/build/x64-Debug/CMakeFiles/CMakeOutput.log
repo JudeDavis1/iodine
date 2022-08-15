@@ -50,16 +50,16 @@ The CXX compiler identification is MSVC, found in "C:/Users/juded/OneDrive/Docum
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/juded/OneDrive/Documents/Projects/iodine/Iodate/out/build/x64-Debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_3ca34 && [1/2] Building C object CMakeFiles\cmTC_3ca34.dir\CMakeCCompilerABI.c.obj
-[2/2] Linking C executable cmTC_3ca34.exe
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_854f8 && [1/2] Building C object CMakeFiles\cmTC_854f8.dir\CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_854f8.exe
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/juded/OneDrive/Documents/Projects/iodine/Iodate/out/build/x64-Debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_68ade && [1/2] Building CXX object CMakeFiles\cmTC_68ade.dir\CMakeCXXCompilerABI.cpp.obj
-[2/2] Linking CXX executable cmTC_68ade.exe
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b324b && [1/2] Building CXX object CMakeFiles\cmTC_b324b.dir\CMakeCXXCompilerABI.cpp.obj
+[2/2] Linking CXX executable cmTC_b324b.exe
 
 
 
