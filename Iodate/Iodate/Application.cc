@@ -1,4 +1,4 @@
-﻿// Iodate.cpp : Defines the entry point for the application.
+﻿// Application.cc : Defines the entry point for the application.
 //
 
 
@@ -22,6 +22,8 @@ Application::Application(const char* title, int width, int height)
 
 void Application::Run()
 {
+	m_window->Begin();
+
 	while (!glfwWindowShouldClose(m_window->gl_window))
 	{
 		// Check if escape key was pressed
@@ -37,6 +39,8 @@ void Application::Run()
 		glfwSwapBuffers(m_window->gl_window);
 		glfwPollEvents();
 	}
+
+	m_window->End();
 }
 
 

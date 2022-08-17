@@ -11,12 +11,15 @@ class Window
 {
 public:
 	GLFWwindow* gl_window;
-
+	
 	Window(const char* title, int width=500, int height=400);
 
+	// Create a new ImGui frame (sep)
+	void Begin();
 	void NewFrame();
 	void Render();
 	void Update();
+	void End();
 
 	~Window();
 private:
@@ -24,3 +27,4 @@ private:
 	const char* m_title;
 	int m_width, m_height;
 };
+

@@ -1,44 +1,8 @@
 Detecting compiler hash for triplet x64-windows...
-The following packages will be built and installed:
-  * egl-registry[core]:x64-windows -> 2021-11-23
-    glad[core,loader]:x64-windows -> 0.1.36
-    glfw3[core]:x64-windows -> 3.3.7
-    imgui[core,glfw-binding,opengl3-binding]:x64-windows -> 1.88#1
-  * opengl-registry[core]:x64-windows -> 2021-11-17
-  * vcpkg-cmake[core]:x64-windows -> 2022-07-18
-  * vcpkg-cmake-config[core]:x64-windows -> 2022-02-06#1
-Additional packages (*) will be modified to complete this operation.
-Restored 6 package(s) from C:\Users\juded\AppData\Local\vcpkg\archives in 1.807 s. Use --debug to see more details.
-Installing 1/7 vcpkg-cmake-config:x64-windows...
-Elapsed time to handle vcpkg-cmake-config:x64-windows: 69.28 ms
-Installing 2/7 vcpkg-cmake:x64-windows...
-Elapsed time to handle vcpkg-cmake:x64-windows: 154.1 ms
-Installing 3/7 egl-registry:x64-windows...
-Elapsed time to handle egl-registry:x64-windows: 316.2 ms
-Installing 4/7 opengl-registry:x64-windows...
-Elapsed time to handle opengl-registry:x64-windows: 1.233 s
-Installing 5/7 glad:x64-windows...
-Elapsed time to handle glad:x64-windows: 272.5 ms
-Installing 6/7 glfw3:x64-windows...
-Elapsed time to handle glfw3:x64-windows: 885.6 ms
-Installing 7/7 imgui:x64-windows...
-Building imgui[core,glfw-binding,opengl3-binding]:x64-windows...
--- Note: imgui only supports static library linkage. Building static library.
--- Using cached ocornut-imgui-v1.88.tar.gz.
--- Cleaning sources at C:/Program Files/vcpkg/buildtrees/imgui/src/v1.88-34c93572a3.clean. Use --editable to skip cleaning for the packages you specify.
--- Extracting source C:/Program Files/vcpkg/downloads/ocornut-imgui-v1.88.tar.gz
--- Using source at C:/Program Files/vcpkg/buildtrees/imgui/src/v1.88-34c93572a3.clean
--- Found external ninja('1.10.2').
--- Configuring x64-windows
--- Building x64-windows-dbg
--- Building x64-windows-rel
--- Installing: C:/Program Files/vcpkg/packages/imgui_x64-windows/share/imgui/copyright
--- Performing post-build validation
--- Performing post-build validation done
-Stored binary cache: "C:\Users\juded\AppData\Local\vcpkg\archives\7b\7b7d8b06aeb3c2faf9eff2fffcee224057077124862fe48109824d4e2b248704.zip"
-Elapsed time to handle imgui:x64-windows: 1.909 min
+All requested packages are currently installed.
+Restored 0 package(s) from C:\Users\juded\AppData\Local\vcpkg\archives in 497.1 us. Use --debug to see more details.
 
-Total elapsed time: 3.401 min
+Total elapsed time: 5.935 s
 
 glad provides CMake targets:
     # this is heuristically generated, and may not be correct
