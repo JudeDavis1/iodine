@@ -14,6 +14,7 @@ Application::Application(const char* title, int width, int height)
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO &io = ImGui::GetIO();
+	ImGui::SetNextWindowPos(ImVec2(0, 0));
 
 	ImGui_ImplGlfw_InitForOpenGL(m_window->gl_window, true);
 	ImGui_ImplOpenGL3_Init();
@@ -31,6 +32,12 @@ void Application::Run()
 			glfwSetWindowShouldClose(m_window->gl_window, true);
 		
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		int width, height;
+		glfwGetWindowSize(m_window->gl_window, &width, &height);
+
+		m_window->SetWidth(width);
+		m_window->SetHeight(height);
 		
 		m_window->NewFrame();
 		m_window->Update();

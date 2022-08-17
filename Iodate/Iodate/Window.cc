@@ -1,4 +1,12 @@
 #include "Window.h"
+#include <random>
+#include <Iodyn/Core/Utils/Rand.h>
+#include <Iodyn/Core/Utils/Image.h>
+
+
+/// TODO:
+/// - Add image creation and convert to ImGui texture
+
 
 
 
@@ -33,7 +41,7 @@ Window::Window(const char* title, int width, int height)
 
 void Window::Begin()
 {
-	ImGui::SetNextWindowPos(ImVec2(0, 0));
+	
 }
 
 void Window::NewFrame()
@@ -50,10 +58,41 @@ void Window::Render()
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
+uint32_t PerPixel(ImVec2 coords)
+{
+	uint8_t r = (uint8_t)(coords.x * 255.0f);
+	uint8_t g = (uint8_t)(coords.y * 255.0f);
+
+
+	return 0xff000000 | (g << 8) | r;
+}
+
+void RenderSomething()
+{
+	int width = 400;
+	int height = 400;
+	GLuint txtr;
+	uint32_t* img_data = new uint32_t[width * height];
+
+
+	for (uint32_t y = 0; y < height; y++)
+	{
+		for (uint32_t x = 0; x < width; x++)
+		{
+			ImVec2 coords = ImVec2((float)x / (float)width, (float)y / (float)height);
+			img_data[x + y * width] = PerPixel(coords);
+		}
+	}
+
+	Idn::CreateTexture((unsigned char*)img_data, width, height, &txtr);
+	ImGui::Image((void*)(intptr_t)txtr, ImVec2(width, height));
+}
+
 void Window::Update()
 {
-	ImGui::SetNextWindowSize(ImVec2(m_width / 2, m_height / 2));
-	ImGui::Begin("Hello", (bool*)1, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar);
+	ImGui::SetNextWindowPos(ImVec2(0, 0));
+	ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
+	ImGui::Begin("Hello", (bool*)1, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDecoration);
 
 	if (ImGui::BeginMenuBar())
 	{
@@ -61,14 +100,33 @@ void Window::Update()
 		{
 			if (ImGui::MenuItem("Begin"))
 			{
-				
+				std::cout << "ok" << std::endl;
 			}
 			if (ImGui::MenuItem("Stop")) {}
 			ImGui::EndMenu();
 		}
 
+		if (ImGui::BeginMenu("Model"))
+		{
+			if (ImGui::MenuItem("Render"))
+			{
+				m_shouldRender = true;
+			}
+			if (m_shouldRender)
+			{
+				if (ImGui::MenuItem("Stop"))
+				{
+					m_shouldRender = false;
+				}
+			}
+			ImGui::EndMenu();
+		}
+
 		ImGui::EndMenuBar();
 	}
+
+	if (m_shouldRender)
+		RenderSomething();
 
 	ImGui::End();
 }
