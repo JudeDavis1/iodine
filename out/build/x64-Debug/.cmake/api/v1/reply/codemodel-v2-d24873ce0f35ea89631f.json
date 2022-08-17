@@ -1,0 +1,150 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						5
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "Iodyn/Iodyn",
+					"childIndexes" : 
+					[
+						2
+					],
+					"jsonFile" : "directory-Iodyn.Iodyn-Debug-f42c57b2ac3de11730c8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Iodyn/Iodyn"
+				},
+				{
+					"build" : "Iodyn/Iodyn/Core",
+					"childIndexes" : 
+					[
+						3,
+						4
+					],
+					"jsonFile" : "directory-Iodyn.Iodyn.Core-Debug-9285afa4cd7c441a7660.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "Iodyn/Iodyn/Core"
+				},
+				{
+					"build" : "Iodyn/Iodyn/Core/Renderer",
+					"jsonFile" : "directory-Iodyn.Iodyn.Core.Renderer-Debug-2cf437c7b1eea4c722fb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 0,
+					"source" : "Iodyn/Iodyn/Core/Renderer"
+				},
+				{
+					"build" : "Iodyn/Iodyn/Core/Utils",
+					"jsonFile" : "directory-Iodyn.Iodyn.Core.Utils-Debug-95820c7153d4f2812349.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 0,
+					"source" : "Iodyn/Iodyn/Core/Utils"
+				},
+				{
+					"build" : "Iodate",
+					"childIndexes" : 
+					[
+						6
+					],
+					"jsonFile" : "directory-Iodate-Debug-1b9035f9b355f8b2cae6.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Iodate"
+				},
+				{
+					"build" : "Iodate/Iodate",
+					"jsonFile" : "directory-Iodate.Iodate-Debug-6985778713e877d579bc.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "Iodate/Iodate",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"name" : "Iodyn",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 6,
+					"id" : "Iodate::@c9555654ef5256525ab5",
+					"jsonFile" : "target-Iodate-Debug-783a0ece04a138a65481.json",
+					"name" : "Iodate",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/juded/OneDrive/Documents/Projects/iodine/out/build/x64-Debug",
+		"source" : "C:/Users/juded/OneDrive/Documents/Projects/iodine"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

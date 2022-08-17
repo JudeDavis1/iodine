@@ -3,6 +3,7 @@ python/data/hand/*
 python/data/no_hand/*
 python/HandDTTR.model
 
+.vs
 .vscode
 
 Iodate/.vs

@@ -1,0 +1,7 @@
+# ninja log v5
+23	5391	6824604344685552	Iodate/Iodate/CMakeFiles/Iodate.dir/Main.cc.obj	58a8940e1097d07d
+5613	15956	6824604393670057	Iodate/Iodate/Iodate.exe	c680a87a05418186
+2	2622	6822751112615564	Iodyn/Iodyn/Core/Renderer/CMakeFiles/Iodyn.dir/Renderer.cc.obj	b382c8f42e6e0db
+34	5612	6824604346863529	Iodate/Iodate/CMakeFiles/Iodate.dir/Window.cc.obj	791251f426af95d8
+5	5436	6824604345265008	Iodate/Iodate/CMakeFiles/Iodate.dir/Application.cc.obj	6930f694d4e10bed
+2642	2840	6822751114763580	Iodyn/Iodyn/Core/Renderer/Iodyn.lib	4796ed9144120d46

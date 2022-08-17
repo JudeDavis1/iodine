@@ -20,7 +20,7 @@ def run():
     while True:
         _, frame = vc.read()
         frame = cv2.cvtColor(cv2.resize(frame, (config.WIDTH, config.HEIGHT)), cv2.IMREAD_GRAYSCALE)
-        cv2.imshow('', frame)
+        cv2.imshow('Your frame', frame)
 
         rnd = random.randbytes(10).hex()
         if mode == 'hand':
