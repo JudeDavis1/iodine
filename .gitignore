@@ -6,7 +6,7 @@ python/HandDTTR.model
 .vs
 .vscode
 
-out
+out/
 Iodyn/out
 
 Iodate/.vs
