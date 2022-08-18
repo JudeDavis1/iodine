@@ -1,5 +1,6 @@
 #include "Window.h"
 #include <random>
+#include <glm/glm.hpp>
 #include <Iodyn/Core/Utils/Rand.h>
 #include <Iodyn/Core/Utils/Image.h>
 
@@ -58,20 +59,31 @@ void Window::Render()
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-uint32_t PerPixel(ImVec2 coords)
+uint32_t PerPixel(glm::vec2 coords, int width=500, int height=500)
 {
 	uint8_t r = (uint8_t)(coords.x * 255.0f);
 	uint8_t g = (uint8_t)(coords.y * 255.0f);
 
+	float radius = 0.5f;
+	glm::vec3 rayOrigin(0.0f, 0.0f, 2.0f);
+	glm::vec3 rayDirection(coords.x, coords.y, -1.0f);
 
-	return 0xff000000 | (g << 8) | r;
+	float a = glm::dot(rayDirection, rayDirection);
+	float b = 2.0f * glm::dot(rayOrigin, rayDirection);
+	float c = glm::dot(rayOrigin, rayOrigin) - radius * radius;
+	float discriminant = b * b - 4.0f * a * c;
+
+	if (discriminant >= 0.0f)
+		return 0xffff00ff;
+
+	return 0xff000000;
 }
 
 void RenderSomething()
 {
-	int width = 400;
-	int height = 400;
 	GLuint txtr;
+	int width = 500;
+	int height = 500;
 	uint32_t* img_data = new uint32_t[width * height];
 
 
@@ -79,7 +91,8 @@ void RenderSomething()
 	{
 		for (uint32_t x = 0; x < width; x++)
 		{
-			ImVec2 coords = ImVec2((float)x / (float)width, (float)y / (float)height);
+			glm::vec2 coords = { (float)x / (float)width, (float)y / (float)height };
+			coords = coords * 2.0f - 1.0f;
 			img_data[x + y * width] = PerPixel(coords);
 		}
 	}

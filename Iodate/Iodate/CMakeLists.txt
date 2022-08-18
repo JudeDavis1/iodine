@@ -23,6 +23,9 @@ target_link_libraries(Iodate PRIVATE glfw)
 find_package(imgui CONFIG REQUIRED)
 target_link_libraries(Iodate PRIVATE imgui::imgui)
 
+find_package(glm CONFIG REQUIRED)
+target_link_libraries(Iodate PRIVATE glm::glm)
+
 include (${CMAKE_SOURCE_DIR}/CMake/functions.cmake)
 
 INCLUDE_LOCAL_DIRS(Iodate)
