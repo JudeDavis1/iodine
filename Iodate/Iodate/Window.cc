@@ -1,4 +1,5 @@
 #include "Window.h"
+
 #include <random>
 #include <glm/glm.hpp>
 #include <Iodyn/Core/Utils/Rand.h>
@@ -6,7 +7,7 @@
 
 
 /// TODO:
-/// - Add image creation and convert to ImGui texture
+/// - Abstract sphere to class which inherits from ObjectBase
 
 
 
