@@ -59,13 +59,13 @@ void Window::Render()
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-uint32_t PerPixel(glm::vec2 coords, int width=500, int height=500)
+glm::vec4 PerPixel(glm::vec2 coords, int width=500, int height=500)
 {
 	uint8_t r = (uint8_t)(coords.x * 255.0f);
 	uint8_t g = (uint8_t)(coords.y * 255.0f);
 
 	float radius = 0.5f;
-	glm::vec3 rayOrigin(0.0f, 0.0f, 2.0f);
+	glm::vec3 rayOrigin(0.0f, 0.0f, 1.0f);
 	glm::vec3 rayDirection(coords.x, coords.y, -1.0f);
 
 	float a = glm::dot(rayDirection, rayDirection);
@@ -73,10 +73,22 @@ uint32_t PerPixel(glm::vec2 coords, int width=500, int height=500)
 	float c = glm::dot(rayOrigin, rayOrigin) - radius * radius;
 	float discriminant = b * b - 4.0f * a * c;
 
-	if (discriminant >= 0.0f)
-		return 0xffff00ff;
+	if (discriminant < 0.0f)
+		return glm::vec4(0, 0, 0, 1);
 
-	return 0xff000000;
+	float t0 = (-b + glm::sqrt(discriminant)) / (2.0f * a);
+	float t1 = (-b - glm::sqrt(discriminant)) / (2.0f * a);  // Closest hit
+
+	glm::vec3 hitPoint = rayOrigin + rayDirection * t1;
+	glm::vec3 normal = glm::normalize(hitPoint);
+
+	glm::vec3 lightingDirection = glm::normalize(glm::vec3(-1, -1, -1));
+	float d = glm::max(glm::dot(normal, -lightingDirection), 0.2f);
+
+	glm::vec3 sphereColor(0.5, 0, 1);
+	sphereColor *= d;
+
+	return glm::vec4(sphereColor, 1.0f);
 }
 
 void RenderSomething()
@@ -86,14 +98,15 @@ void RenderSomething()
 	int height = 500;
 	uint32_t* img_data = new uint32_t[width * height];
 
-
 	for (uint32_t y = 0; y < height; y++)
 	{
 		for (uint32_t x = 0; x < width; x++)
 		{
 			glm::vec2 coords = { (float)x / (float)width, (float)y / (float)height };
 			coords = coords * 2.0f - 1.0f;
-			img_data[x + y * width] = PerPixel(coords);
+
+			glm::vec4 color = glm::clamp(PerPixel(coords), glm::vec4(0.0f), glm::vec4(1.0f));
+			img_data[x + y * width] = Idn::ToRGBA(color);
 		}
 	}
 
