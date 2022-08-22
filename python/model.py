@@ -10,7 +10,7 @@ from torch.nn import functional as F
 CHANNELS = 3
 
 
-class IodineFrameClassifier(nn.Module):
+class IodynFrameClassifier(nn.Module):
 
     def __init__(self, n_batches=5):
         super().__init__()

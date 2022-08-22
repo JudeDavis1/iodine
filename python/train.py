@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader
 # from nncf.torch import create_compressed_model, register_default_init_args
 
 from data import IMGDataset
-from model import IodineFrameClassifier
+from model import IodynFrameClassifier
 
 LR = .0002
 EPOCHS = 10
@@ -54,7 +54,7 @@ def main():
         except KeyboardInterrupt:
             model.save()
             sys.exit(0)
-        
+
         model.save()
 
 

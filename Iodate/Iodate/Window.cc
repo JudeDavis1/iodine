@@ -1,5 +1,16 @@
 #include "Window.h"
 
+#include <random>
+#include <glm/glm.hpp>
+
+#include <Iodyn/Core/Utils/Rand.h>
+
+
+
+/// TODO:
+/// - Abstract sphere to class which inherits from ObjectBase
+
+
 
 Window::Window(const char* title, int width, int height)
 {
@@ -22,12 +33,20 @@ Window::Window(const char* title, int width, int height)
 		std::cout << "Failed to initialize window" << std::endl;
 		exit(1);
 	}
-
+	
 	glfwMakeContextCurrent(gl_window);
 	gladLoadGL();
 
 	// Set window color
 	glClearColor(0, 0.5, 0.7, 1);
+}
+
+void Window::Begin()
+{
+	for (auto object : m_objects)
+	{
+		object->Begin();
+	}
 }
 
 void Window::NewFrame()
@@ -40,19 +59,53 @@ void Window::NewFrame()
 // Render ImGui onto the screen
 void Window::Render()
 {
+	ImGui::SetNextWindowPos(ImVec2(0, 0));
+	ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
+	ImGui::Begin("Hello", (bool*)1, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDecoration);
+
+	if (ImGui::BeginMenuBar())
+	{
+		if (ImGui::BeginMenu("Model"))
+		{
+			if (ImGui::MenuItem("Render"))
+			{
+				m_shouldRender = true;
+			}
+			if (m_shouldRender)
+			{
+				if (ImGui::MenuItem("Stop"))
+				{
+					m_shouldRender = false;
+				}
+			}
+			ImGui::EndMenu();
+		}
+
+		ImGui::EndMenuBar();
+	}
+
+	if (m_shouldRender)
+	{
+		for (auto object : m_objects)
+		{
+			object->Render();
+		}
+	}
+
+	ImGui::End();
+
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void Window::Update()
+
+
+void Window::End()
 {
-	ImGui::SetNextWindowPos(ImVec2(0, 0));
-	ImGui::SetNextWindowSize(ImVec2(m_width, m_height));
-	ImGui::Begin("Hello", (bool*)1, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
-
-	ImGui::Text("Ok");
-
-	ImGui::End();
+	for (auto object : m_objects)
+	{
+		object->End();
+	}
 }
 
 
@@ -65,3 +118,4 @@ Window::~Window()
 	glfwDestroyWindow(gl_window);
 	glfwTerminate();
 }
+

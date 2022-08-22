@@ -1,19 +1,26 @@
-﻿// Iodate.cpp : Defines the entry point for the application.
+﻿// Application.cc : Defines the entry point for the application.
 //
 
 
 #include "Application.h"
 
+#include <chrono>
+
 
 
 Application::Application(const char* title, int width, int height)
 {
+	// Setup window
 	m_window = new Window(title, width, height);
-	
+
+	for (int i = 0; i < 1; i++)
+		m_window->AddObject(std::make_shared<SphereObject>());
+
 	// Setup ImGui
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO &io = ImGui::GetIO();
+	ImGui::SetNextWindowPos(ImVec2(0, 0));
 
 	ImGui_ImplGlfw_InitForOpenGL(m_window->gl_window, true);
 	ImGui_ImplOpenGL3_Init();
@@ -22,21 +29,47 @@ Application::Application(const char* title, int width, int height)
 
 void Application::Run()
 {
+	m_window->Begin();
+
+	int fps = 0;
+	int curFrames = 0;
+	std::chrono::time_point timer = std::chrono::system_clock::now();
+
 	while (!glfwWindowShouldClose(m_window->gl_window))
 	{
+		std::chrono::duration<double> elapsed = std::chrono::system_clock::now() - timer;
+
+		if (elapsed.count() >= 1)
+		{
+			fps = curFrames;
+			curFrames = 0;
+			timer += std::chrono::milliseconds(1000);
+
+			std::cout << fps << std::endl;
+		}
+
 		// Check if escape key was pressed
 		if (glfwGetKey(m_window->gl_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(m_window->gl_window, true);
 		
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		int width, height;
+		glfwGetWindowSize(m_window->gl_window, &width, &height);
+
+		m_window->SetWidth(width);
+		m_window->SetHeight(height);
 		
 		m_window->NewFrame();
-		m_window->Update();
 		m_window->Render();
 
 		glfwSwapBuffers(m_window->gl_window);
 		glfwPollEvents();
+		
+		curFrames++;
 	}
+
+	m_window->End();
 }
 
 

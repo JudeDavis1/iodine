@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/egl-registry-x64-windows-2021-11-23-cd98eebb-0707-454b-b7e6-f992918637a9",
-  "name": "egl-registry:x64-windows@2021-11-23 f3b013e323c72a9940e96e1ea3fb5930918898330156ace7c9d12c67a7dab2e3",
+  "documentNamespace": "https://spdx.org/spdxdocs/egl-registry-x64-windows-2021-11-23-5fe94265-66c6-4166-833f-f56f3693ced3",
+  "name": "egl-registry:x64-windows@2021-11-23 5af6addf89b068e53f64bb3fc9dd77e85611de8ea5e2f51a3a5b462279af0487",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-a0e87e227afb536c62188c11ad029954f28fdb22"
     ],
-    "created": "2022-08-12T20:36:29Z"
+    "created": "2022-08-12T14:06:15Z"
   },
   "relationships": [
     {
@@ -64,7 +64,7 @@
     {
       "name": "egl-registry:x64-windows",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "f3b013e323c72a9940e96e1ea3fb5930918898330156ace7c9d12c67a7dab2e3",
+      "versionInfo": "5af6addf89b068e53f64bb3fc9dd77e85611de8ea5e2f51a3a5b462279af0487",
       "downloadLocation": "NONE",
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",

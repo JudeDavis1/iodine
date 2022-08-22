@@ -1,9 +1,9 @@
 #include "Application.h"
 
-
 int main()
 {
-	Application application("Hello");
+	
+	Application application("Iodyn", 500, 500);
 	application.Run();
 }
 
