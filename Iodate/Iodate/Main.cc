@@ -3,7 +3,7 @@
 int main()
 {
 	
-	Application application("Iodyn", 500, 500);
+	Application application("Iodine", 500, 500);
 	application.Run();
 }
 

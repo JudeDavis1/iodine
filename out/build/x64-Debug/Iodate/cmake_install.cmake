@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/juded/OneDrive/Documents/Projects/iodyn/Iodate
+# Install script for directory: C:/Users/juded/OneDrive/Documents/Projects/iodine/Iodate
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/juded/OneDrive/Documents/Projects/iodyn/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/juded/OneDrive/Documents/Projects/iodine/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/juded/OneDrive/Documents/Projects/iodyn/out/build/x64-Debug/Iodate/Iodate/cmake_install.cmake")
+  include("C:/Users/juded/OneDrive/Documents/Projects/iodine/out/build/x64-Debug/Iodate/Iodate/cmake_install.cmake")
 
 endif()
 
