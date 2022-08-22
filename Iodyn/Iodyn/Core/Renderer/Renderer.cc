@@ -7,6 +7,12 @@ Renderer::Renderer()
 }
 
 
+void Renderer::Render()
+{
+
+}
+
+
 Renderer::~Renderer()
 {
 

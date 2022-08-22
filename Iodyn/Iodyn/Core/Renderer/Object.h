@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 
@@ -5,22 +7,12 @@
 class ObjectBase
 {
 public:
-	virtual ObjectBase() = default;
-	
-	virtual void Begin() {}
-	virtual void NewFrame()
-	{
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-	}
+	ObjectBase() {}
 
-	virtual void Render()
-	{
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-	}
+	virtual void Begin() = 0;
+	virtual void Render() = 0;
+	virtual void End() = 0;
 
-	virtual void Update() = default;
-	virtual void End() {}
+	virtual ~ObjectBase() = default;
 };
+

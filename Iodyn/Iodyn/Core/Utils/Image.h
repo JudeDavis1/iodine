@@ -1,10 +1,13 @@
+#pragma once
+
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 
 namespace Idn
 {
-
 	bool CreateTexture(unsigned char* image_data, int width, int height, GLuint* out_texture)
 	{
 		// Generate a texture
