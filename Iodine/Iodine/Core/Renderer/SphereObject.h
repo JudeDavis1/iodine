@@ -8,25 +8,26 @@
 #include <GLFW/glfw3.h>
 
 
-
-class SphereObject: public ObjectBase
+namespace Idn
 {
-public:
-	SphereObject() {}
-	
-	void Begin() override;
-	void Render() override;
-	void End() override;
+	class SphereObject : public ObjectBase
+	{
+	public:
+		SphereObject();
+		~SphereObject() {}
 
-	float GetRadius() { return m_radius; }
-	void SetRadius(float r) { m_radius = r; }
-	
-	~SphereObject() {}
+		void Begin() override;
+		void Render() override;
+		void End() override;
 
-private:
-	float m_radius = 200;
+		float GetRadius() { return m_radius; }
+		void SetRadius(float r) { m_radius = r; }
 
-	glm::vec4 m_PerPixel(glm::vec2 coords);
-};
+	private:
+		float m_radius = 200;
+		std::shared_ptr<Idn::Shader> m_shader = nullptr;
 
-	
+		glm::vec4 m_PerPixel(glm::vec2 coords);
+	};
+
+}

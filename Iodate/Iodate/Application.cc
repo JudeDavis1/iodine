@@ -3,6 +3,7 @@
 
 
 #include "Application.h"
+#include <Iodine/Core/Renderer/TriangleObject.h>
 
 #include <chrono>
 
@@ -14,7 +15,7 @@ Application::Application(const char* title, int width, int height)
 	m_window = new Window(title, width, height);
 
 	for (int i = 0; i < 1; i++)
-		m_window->AddObject(std::make_shared<SphereObject>());
+		m_window->AddObject(std::make_shared<Idn::TriangleObject>());
 
 	// Setup ImGui
 	IMGUI_CHECKVERSION();

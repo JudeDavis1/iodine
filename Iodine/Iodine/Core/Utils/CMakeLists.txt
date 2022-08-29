@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.8)
 
 file(GLOB UtilsSources *.cc)
-file(GLOB UtilsSources *.h)
+file(GLOB UtilsHeaders *.h)
 
 message("${UtilsSources} ${UtilsHeaders}")
 
 
-add_library(Utils ${UtilsSources} ${UtilsSources} "Utils.cc")
+add_library(Utils ${UtilsSources} ${UtilsHeaders})
 
 
 find_package(glad CONFIG REQUIRED)

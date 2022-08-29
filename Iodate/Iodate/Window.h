@@ -9,14 +9,14 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
-#include <Iodyn/Core/Renderer/SphereObject.h>
+#include <Iodine/Core/Renderer/SphereObject.h>
 
 
 class Window
 {
 public:
 	GLFWwindow* gl_window;
-	std::vector<std::shared_ptr<ObjectBase>> m_objects;
+	std::vector<std::shared_ptr<Idn::ObjectBase>> m_objects;
 	
 	Window(const char* title, int width=500, int height=400);
 
@@ -31,7 +31,7 @@ public:
 
 	int GetHeight() { return m_height; }
 	void SetHeight(int height) { this->m_height = height; }
-	void AddObject(std::shared_ptr<ObjectBase> object) { m_objects.push_back(object); }
+	void AddObject(std::shared_ptr<Idn::ObjectBase> object) { m_objects.push_back(object); }
 
 	~Window();
 private:

@@ -4,7 +4,7 @@ file(GLOB RendererSources *.cc)
 file(GLOB RendererHeaders *.h)
 
 
-add_library(Renderer ${RendererSources} ${RendererHeaders})
+add_library(Renderer ${RendererSources} ${RendererHeaders} "../Shaders/Shader.h" "../Shaders/Shader.cc")
 
 
 find_package(glad CONFIG REQUIRED)
