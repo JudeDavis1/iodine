@@ -20,3 +20,5 @@ target_link_libraries(Shaders PRIVATE imgui::imgui)
 
 find_package(glm CONFIG REQUIRED)
 target_link_libraries(Shaders PRIVATE glm::glm)
+
+target_include_directories(Shaders PUBLIC ../../../third_party)

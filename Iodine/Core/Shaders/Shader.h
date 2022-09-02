@@ -14,6 +14,8 @@ namespace Idn
 		~Shader();
 
 		bool Compile();
+		GLuint GetProgram() { return m_program; }
+
 		void Use();
 	private:
 		GLuint m_program;

@@ -4,7 +4,7 @@
 
 // local
 #include "SphereObject.h"
-#include "../Utils/Image.h"
+#include <Core/GraphicsAPI/Image.h>
 
 
 namespace Idn

@@ -16,6 +16,7 @@ namespace Idn
 		virtual void Begin() = 0;
 		virtual void Render() = 0;
 		virtual void End() = 0;
+		virtual void SetTexture() = 0;
 
 		virtual ~ObjectBase() = default;
 	protected:
