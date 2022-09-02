@@ -3,7 +3,7 @@
 #include <random>
 #include <glm/glm.hpp>
 
-#include <Iodine/Core/Utils/Rand.h>
+#include <Iodine/Core/GraphicsAPI/Rand.h>
 
 
 
@@ -38,7 +38,7 @@ Window::Window(const char* title, int width, int height)
 	gladLoadGL();
 
 	// Set window color
-	glClearColor(0, 0.5, 0.7, 1);
+	glClearColor(0.7, 0.8, 1, 1);
 }
 
 void Window::Begin()
@@ -59,6 +59,7 @@ void Window::NewFrame()
 // Render ImGui onto the screen
 void Window::Render()
 {
+	ImGui::SetNextWindowBgAlpha(0);
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
 	ImGui::Begin("Hello", (bool*)1, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDecoration);
@@ -92,6 +93,11 @@ void Window::Render()
 		}
 	}
 
+	char buffer[10];
+	sprintf(buffer, "FPS: %i", m_fps);
+
+	ImGui::Text(buffer);
+	
 	ImGui::End();
 
 	ImGui::Render();
@@ -106,6 +112,11 @@ void Window::End()
 	{
 		object->End();
 	}
+}
+
+void Window::SetFPS(int fps)
+{
+	this->m_fps = fps;
 }
 
 

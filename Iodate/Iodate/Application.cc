@@ -46,7 +46,7 @@ void Application::Run()
 			curFrames = 0;
 			timer += std::chrono::milliseconds(1000);
 
-			std::cout << fps << std::endl;
+			m_window->SetFPS(fps);
 		}
 
 		// Check if escape key was pressed

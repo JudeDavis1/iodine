@@ -1,3 +1,3 @@
 function (include_local_dirs tgt)
-	target_include_directories(${tgt} PUBLIC "../../Iodine")
+	target_include_directories(${tgt} PUBLIC "../..")
 endfunction()

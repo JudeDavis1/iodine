@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/juded/OneDrive/Documents/Projects/iodine/out/build/x64-Debug/Iodine/Iodine/cmake_install.cmake")
+  include("C:/Users/juded/OneDrive/Documents/Projects/iodine/out/build/x64-Debug/Iodine/cmake_install.cmake")
   include("C:/Users/juded/OneDrive/Documents/Projects/iodine/out/build/x64-Debug/Iodate/cmake_install.cmake")
 
 endif()

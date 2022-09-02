@@ -29,6 +29,8 @@ public:
 	int GetWidth() { return m_width; }
 	void SetWidth(int width) { this->m_width = width; }
 
+	void SetFPS(int fps);
+
 	int GetHeight() { return m_height; }
 	void SetHeight(int height) { this->m_height = height; }
 	void AddObject(std::shared_ptr<Idn::ObjectBase> object) { m_objects.push_back(object); }
@@ -37,7 +39,7 @@ public:
 private:
 	// Pointer to the main opaque window object
 	const char* m_title;
-	int m_width, m_height;
+	int m_width, m_height, m_fps = 0;
 
 	bool m_shouldRender = false;
 };

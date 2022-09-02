@@ -30,7 +30,7 @@ target_link_libraries(Iodate PUBLIC imgui::imgui)
 find_package(glm CONFIG REQUIRED)
 target_link_libraries(Iodate PUBLIC glm::glm)
 
-target_link_libraries(Iodate PUBLIC Utils)
+target_link_libraries(Iodate PUBLIC API)
 target_link_libraries(Iodate PUBLIC Renderer)
 
 
