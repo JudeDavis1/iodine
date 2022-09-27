@@ -1,14 +1,14 @@
-#version 440 core
+#version 330 core
 
 in vec3 col;
-in vec2 tex;
+in vec2 outTex;
 
 out vec4 new_col;
 
 // Texture sampler
-uniform sampler2D t;
+uniform sampler2D txtr;
 
 void main()
 {
-	new_col = texture(t, tex);
+	new_col = texture(txtr, outTex);
 }

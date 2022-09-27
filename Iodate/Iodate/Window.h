@@ -9,7 +9,7 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
-#include <Iodine/Core/Renderer/SphereObject.h>
+#include <Core/Renderer/Object.h>
 
 
 class Window
