@@ -8,7 +8,6 @@
 #include <chrono>
 
 
-
 Application::Application(const char* title, int width, int height)
 {
 	// Setup window

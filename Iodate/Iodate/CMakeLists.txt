@@ -4,7 +4,7 @@
 
 cmake_minimum_required (VERSION 3.8)
 
-include ("C:\\Program Files\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake")
+include ("C:/Program Files/vcpkg/scripts/buildsystems/vcpkg.cmake")
 
 # Add source to this project's executable.
 add_executable (Iodate "Main.cc" "Application.cc" "Application.h" "Window.cc")

@@ -1,8 +1,7 @@
 Package: imgui
-Feature: glfw-binding
-Depends: glfw3
-Architecture: x86-windows
+Feature: opengl3-binding
+Architecture: arm64-osx
 Multi-Arch: same
-Description: Make available GLFW binding
+Description: Make available OpenGL3/ES/ES2 (modern) binding
 Type: Port
-Status: install ok installed
+Status: install ok half-installed

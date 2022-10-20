@@ -1,7 +1,10 @@
 Package: imgui
-Feature: opengl3-binding
-Architecture: x86-windows
+Version: 1.88
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
 Multi-Arch: same
-Description: Make available OpenGL3/ES/ES2 (modern) binding
+Abi: 64c3369cc677671992bc7b6b4defec8833458158f8af3fe5d9134ae8aa379669
+Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
 Type: Port
 Status: install ok half-installed

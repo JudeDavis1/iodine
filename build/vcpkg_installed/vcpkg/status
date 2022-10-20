@@ -1,0 +1,103 @@
+Package: vcpkg-cmake-config
+Version: 2022-02-06
+Port-Version: 1
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: cc4ae424d3c859db67ff64b2a71ff9079c15ac1ef949039cbe6be69a36977f25
+Type: Port
+Status: install ok installed
+
+Package: vcpkg-cmake
+Version: 2022-08-18
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: b86e2cb52aee62ffe954ac27a8ed94d30971db7d96e531dbd01302cabdacc280
+Type: Port
+Status: install ok installed
+
+Package: egl-registry
+Version: 2021-11-23
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 9d3b27bbe2ec35d4f017fb9e5e33e22caf097219cadabcf152e3f1d4eab55003
+Description: the EGL API and Extension Registry
+Type: Port
+Status: install ok installed
+
+Package: opengl-registry
+Version: 2021-11-17
+Depends: egl-registry
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: f0ccce1f3b6c12703125804e9d8ac95dd710a4c86edfeb65ec869be6f45b7793
+Description: the API and Extension registries for the OpenGL family APIs
+Type: Port
+Status: install ok installed
+
+Package: glad
+Version: 0.1.36
+Depends: egl-registry, opengl-registry, vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: bf1bdbd36f6299f246c75f0c14be12fc995fd1ae65726d7856a062b9d468a308
+Description: Multi-Language Vulkan/GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs.
+Type: Port
+Default-Features: loader
+Status: install ok installed
+
+Package: glad
+Feature: loader
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Generate loader logic.
+Type: Port
+Status: install ok installed
+
+Package: glfw3
+Version: 3.3.8
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: a18a9431705c30c46cf704c4f07063cb710d084f74edcb14b0935851994b115e
+Description: GLFW is a free, Open Source, multi-platform library for OpenGL, OpenGL ES and Vulkan application development. It provides a simple, platform-independent API for creating windows, contexts and surfaces, reading input, handling events, etc.
+Type: Port
+Status: install ok installed
+
+Package: glm
+Version: 0.9.9.8
+Port-Version: 1
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: b671043a9857acecc84067a430e520261fb7a8cd482e64e0ad564afb93f77414
+Description: OpenGL Mathematics (GLM)
+Type: Port
+Status: install ok installed
+
+Package: imgui
+Version: 1.88
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 64c3369cc677671992bc7b6b4defec8833458158f8af3fe5d9134ae8aa379669
+Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
+Type: Port
+Status: install ok installed
+
+Package: imgui
+Feature: glfw-binding
+Depends: glfw3
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Make available GLFW binding
+Type: Port
+Status: install ok installed
+
+Package: imgui
+Feature: opengl3-binding
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Make available OpenGL3/ES/ES2 (modern) binding
+Type: Port
+Status: install ok installed
+
