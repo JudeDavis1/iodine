@@ -30,14 +30,15 @@ namespace Idn
 			-0.5f, -0.5f, -0.5f,    0.0f, 0.0f,
 			 0.5f, -0.5f, -0.5f,    1.0f, 0.0f,
 			 0.5f,  0.5f, -0.5f,    1.0f, 1.0f,
+
 			 0.5f,  0.5f, -0.5f,    1.0f, 1.0f,
 			-0.5f,  0.5f, -0.5f,    0.0f, 0.1f,
-			-0.5f, -0.5f, -0.5f,    0.0f, 0.0f,
+			-0.5f, -0.5f, -0.5f,    0.0f, 0.0f
 		};
 
 		GLuint indicies[] = {
-			0, 1, 3,
-			1, 2, 3,
+			0, 1, 2,
+			3, 4, 5
 		};
 		
 		glGenVertexArrays(1, &m_VAO);
@@ -76,8 +77,11 @@ namespace Idn
 		glm::mat4 transform = glm::mat4(1);
 
 		// Apply transformations
-		transform = glm::translate(transform, glm::vec3(0.0f, -0.5f, 0.0f));
-		transform = glm::rotate(transform, (float)1 * (float)glfwGetTime() , glm::vec3(1.0f, 1.0f, 1.0f));
+		transform = glm::rotate(
+			transform, 
+			(float)std::_Pi * (float)glfwGetTime(),
+			glm::vec3(1.0f, 1.0f, 1.0f)
+		);
 		
 		// Upload transform to opengl
 		GLint transformLoc = glGetUniformLocation(m_shader->GetProgram(), "transform");

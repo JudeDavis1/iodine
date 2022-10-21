@@ -1,30 +1,41 @@
+#include "Renderer.h"
+#include "TriangleObject.h"
+
 #include <assert.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
-#include "Renderer.h"
-#include "TriangleObject.h"
 
 
 Renderer::Renderer(GLFWwindow* window)
 {
 	assert(window != nullptr);
-
-	// Setup ImGui
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO();
-	ImGui::SetNextWindowPos(ImVec2(0, 0));
-	ImGui_ImplGlfw_InitForOpenGL(window, true);
-	ImGui_ImplOpenGL3_Init();
 }
 
+void Renderer::Begin()
+{
+	for (auto object : m_objects)
+		object->Begin();
+}
+
+void Renderer::NewFrame()
+{
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+}
 
 void Renderer::Render()
 {
-
+	for (auto object : m_objects)
+		object->Render();
 }
 
+void Renderer::End()
+{
+	for (auto object : m_objects)
+		object->End();
+}
 
 Renderer::~Renderer()
 {

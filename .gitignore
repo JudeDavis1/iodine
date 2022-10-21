@@ -7,7 +7,7 @@ python/HandDTTR.model
 .vscode
 
 vcpkg_installed
-
+build
 out/
 Iodyn/out
 

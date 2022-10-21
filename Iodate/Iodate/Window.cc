@@ -18,6 +18,8 @@ Window::Window(const char* title, int width, int height)
 	m_width = width;
 	m_height = height;
 
+	m_renderer = std::make_shared<Renderer>(gl_window);
+
 	// Setup GLFW
 	if (!glfwInit())
 	{
@@ -43,17 +45,12 @@ Window::Window(const char* title, int width, int height)
 
 void Window::Begin()
 {
-	for (auto object : m_objects)
-	{
-		object->Begin();
-	}
+	m_renderer->Begin();
 }
 
 void Window::NewFrame()
 {
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
+	m_renderer->NewFrame();
 }
 
 // Render ImGui onto the screen
@@ -87,10 +84,7 @@ void Window::Render()
 
 	if (m_shouldRender)
 	{
-		for (auto object : m_objects)
-		{
-			object->Render();
-		}
+		m_renderer->Render();
 	}
 
 	char buffer[10];
@@ -108,10 +102,7 @@ void Window::Render()
 
 void Window::End()
 {
-	for (auto object : m_objects)
-	{
-		object->End();
-	}
+	m_renderer->End();
 }
 
 void Window::SetFPS(int fps)
