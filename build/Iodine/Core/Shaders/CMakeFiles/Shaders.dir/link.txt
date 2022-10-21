@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libShaders.a CMakeFiles/Shaders.dir/Shader.cc.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libShaders.a

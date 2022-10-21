@@ -3,7 +3,7 @@
 #include <random>
 #include <glm/glm.hpp>
 
-#include <Iodine/Core/Utils/Rand.h>
+#include <Iodine/Core/GraphicsAPI/Rand.h>
 
 
 
@@ -17,6 +17,8 @@ Window::Window(const char* title, int width, int height)
 	m_title = title;
 	m_width = width;
 	m_height = height;
+
+	m_renderer = std::make_shared<Renderer>(gl_window);
 
 	// Setup GLFW
 	if (!glfwInit())
@@ -38,27 +40,23 @@ Window::Window(const char* title, int width, int height)
 	gladLoadGL();
 
 	// Set window color
-	glClearColor(0, 0.5, 0.7, 1);
+	glClearColor(0.7, 0.8, 1, 1);
 }
 
 void Window::Begin()
 {
-	for (auto object : m_objects)
-	{
-		object->Begin();
-	}
+	m_renderer->Begin();
 }
 
 void Window::NewFrame()
 {
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
+	m_renderer->NewFrame();
 }
 
 // Render ImGui onto the screen
 void Window::Render()
 {
+	ImGui::SetNextWindowBgAlpha(0);
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
 	ImGui::Begin("Hello", (bool*)1, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDecoration);
@@ -86,12 +84,14 @@ void Window::Render()
 
 	if (m_shouldRender)
 	{
-		for (auto object : m_objects)
-		{
-			object->Render();
-		}
+		m_renderer->Render();
 	}
 
+	char buffer[10];
+	sprintf(buffer, "FPS: %i", m_fps);
+
+	ImGui::Text(buffer);
+	
 	ImGui::End();
 
 	ImGui::Render();
@@ -102,19 +102,17 @@ void Window::Render()
 
 void Window::End()
 {
-	for (auto object : m_objects)
-	{
-		object->End();
-	}
+	m_renderer->End();
+}
+
+void Window::SetFPS(int fps)
+{
+	this->m_fps = fps;
 }
 
 
 Window::~Window()
 {
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
-
 	glfwDestroyWindow(gl_window);
 	glfwTerminate();
 }

@@ -8,21 +8,19 @@
 #include <chrono>
 
 
-
 Application::Application(const char* title, int width, int height)
 {
 	// Setup window
 	m_window = new Window(title, width, height);
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 5; i++)
 		m_window->AddObject(std::make_shared<Idn::TriangleObject>());
 
 	// Setup ImGui
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO &io = ImGui::GetIO();
+	ImGuiIO& io = ImGui::GetIO();
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
-
 	ImGui_ImplGlfw_InitForOpenGL(m_window->gl_window, true);
 	ImGui_ImplOpenGL3_Init();
 }
@@ -46,7 +44,7 @@ void Application::Run()
 			curFrames = 0;
 			timer += std::chrono::milliseconds(1000);
 
-			std::cout << fps << std::endl;
+			m_window->SetFPS(fps);
 		}
 
 		// Check if escape key was pressed

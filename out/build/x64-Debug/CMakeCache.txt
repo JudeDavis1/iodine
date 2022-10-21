@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//Dependencies for the target
+API_LIB_DEPENDS:STATIC=general;glad::glad;general;glfw;general;imgui::imgui;
+
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.33.31629/bin/Hostx64/x64/lib.exe
 
@@ -205,13 +208,10 @@ Iodine_IS_TOP_LEVEL:STATIC=ON
 Iodine_SOURCE_DIR:STATIC=C:/Users/juded/OneDrive/Documents/Projects/iodine
 
 //Dependencies for the target
-Renderer_LIB_DEPENDS:STATIC=general;glad::glad;general;glfw;general;imgui::imgui;
+Renderer_LIB_DEPENDS:STATIC=general;glad::glad;general;glfw;general;imgui::imgui;general;API;
 
 //Dependencies for the target
 Shaders_LIB_DEPENDS:STATIC=general;glad::glad;general;glfw;general;imgui::imgui;
-
-//Dependencies for the target
-Utils_LIB_DEPENDS:STATIC=general;glad::glad;general;glfw;general;imgui::imgui;
 
 //Automatically copy dependencies into the output directory for
 // executables.

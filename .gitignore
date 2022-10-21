@@ -6,9 +6,10 @@ python/HandDTTR.model
 .vs
 .vscode
 
+vcpkg_installed
+build
 out/
 Iodyn/out
 
 Iodate/.vs
-Iodate/vcpkg_installed
 Iodate/out
