@@ -122,10 +122,6 @@ void Window::SetFPS(int fps)
 
 Window::~Window()
 {
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
-
 	glfwDestroyWindow(gl_window);
 	glfwTerminate();
 }
