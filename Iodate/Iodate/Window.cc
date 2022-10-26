@@ -11,8 +11,7 @@
 /// - Abstract sphere to class which inherits from ObjectBase
 
 
-
-Window::Window(const char* title, int width, int height)
+Window::Window(const char* title, uint32_t width, uint32_t height)
 {
 	m_title = title;
 	m_width = width;
@@ -45,6 +44,12 @@ Window::Window(const char* title, int width, int height)
 
 void Window::Begin()
 {
+	// Update width, height pointers in each object
+	for (auto object : m_renderer->GetObjects())
+	{
+		object->winWIDTH = &m_width;
+		object->winHEIGHT = &m_height;
+	}
 	m_renderer->Begin();
 }
 
@@ -59,7 +64,7 @@ void Window::Render()
 	ImGui::SetNextWindowBgAlpha(0);
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
-	ImGui::Begin("Hello", (bool*)1, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDecoration);
+	ImGui::Begin("Hello", (bool*)1, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDecoration);
 
 	if (ImGui::BeginMenuBar())
 	{

@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libRenderer.a CMakeFiles/Renderer.dir/Renderer.cc.o CMakeFiles/Renderer.dir/SphereObject.cc.o CMakeFiles/Renderer.dir/TriangleObject.cc.o CMakeFiles/Renderer.dir/__/Shaders/Shader.cc.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libRenderer.a

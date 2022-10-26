@@ -1,5 +1,5 @@
 #include "Renderer.h"
-#include "TriangleObject.h"
+#include "CubeObject.h"
 
 #include <assert.h>
 #include <imgui_impl_glfw.h>

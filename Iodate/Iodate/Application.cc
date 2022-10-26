@@ -3,18 +3,18 @@
 
 
 #include "Application.h"
-#include <Iodine/Core/Renderer/TriangleObject.h>
+#include <Iodine/Core/Renderer/CubeObject.h>
 
 #include <chrono>
 
 
-Application::Application(const char* title, int width, int height)
+Application::Application(const char* title, uint32_t width, uint32_t height)
 {
 	// Setup window
 	m_window = new Window(title, width, height);
 
-	for (int i = 0; i < 5; i++)
-		m_window->AddObject(std::make_shared<Idn::TriangleObject>());
+	for (int i = 0; i < 3; i++)
+		m_window->AddObject(std::make_shared<Idn::CubeObject>());
 
 	// Setup ImGui
 	IMGUI_CHECKVERSION();
@@ -51,7 +51,7 @@ void Application::Run()
 		if (glfwGetKey(m_window->gl_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(m_window->gl_window, true);
 		
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		int width, height;
 		glfwGetWindowSize(m_window->gl_window, &width, &height);

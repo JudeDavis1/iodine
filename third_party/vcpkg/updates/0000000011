@@ -1,7 +1,0 @@
-Package: glad
-Feature: loader
-Architecture: arm64-osx
-Multi-Arch: same
-Description: Generate loader logic.
-Type: Port
-Status: install ok installed

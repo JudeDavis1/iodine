@@ -197,6 +197,15 @@ build Iodine\Core\Shaders\rebuild_cache: phony Iodine\Core\Shaders\CMakeFiles\re
 
 build cmake_object_order_depends_target_Renderer: phony || cmake_object_order_depends_target_API
 
+build Iodine\Core\Renderer\CMakeFiles\Renderer.dir\CubeObject.cc.obj: CXX_COMPILER__Renderer_Debug C$:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\CubeObject.cc || cmake_object_order_depends_target_Renderer
+  DEFINES = -DGLFW_DLL
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\..\.. -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\..\..\..\third_party -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\..\..\..\Iodate -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\GraphicsAPI\..\..\..\third_party -external:IC:\Users\juded\OneDrive\Documents\Projects\iodine\out\build\x64-Debug\vcpkg_installed\x64-windows\include -external:W0
+  OBJECT_DIR = Iodine\Core\Renderer\CMakeFiles\Renderer.dir
+  OBJECT_FILE_DIR = Iodine\Core\Renderer\CMakeFiles\Renderer.dir
+  TARGET_COMPILE_PDB = Iodine\Core\Renderer\CMakeFiles\Renderer.dir\Renderer.pdb
+  TARGET_PDB = Iodine\Core\Renderer\Renderer.pdb
+
 build Iodine\Core\Renderer\CMakeFiles\Renderer.dir\Renderer.cc.obj: CXX_COMPILER__Renderer_Debug C$:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\Renderer.cc || cmake_object_order_depends_target_Renderer
   DEFINES = -DGLFW_DLL
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
@@ -207,15 +216,6 @@ build Iodine\Core\Renderer\CMakeFiles\Renderer.dir\Renderer.cc.obj: CXX_COMPILER
   TARGET_PDB = Iodine\Core\Renderer\Renderer.pdb
 
 build Iodine\Core\Renderer\CMakeFiles\Renderer.dir\SphereObject.cc.obj: CXX_COMPILER__Renderer_Debug C$:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\SphereObject.cc || cmake_object_order_depends_target_Renderer
-  DEFINES = -DGLFW_DLL
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\..\.. -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\..\..\..\third_party -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\..\..\..\Iodate -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\GraphicsAPI\..\..\..\third_party -external:IC:\Users\juded\OneDrive\Documents\Projects\iodine\out\build\x64-Debug\vcpkg_installed\x64-windows\include -external:W0
-  OBJECT_DIR = Iodine\Core\Renderer\CMakeFiles\Renderer.dir
-  OBJECT_FILE_DIR = Iodine\Core\Renderer\CMakeFiles\Renderer.dir
-  TARGET_COMPILE_PDB = Iodine\Core\Renderer\CMakeFiles\Renderer.dir\Renderer.pdb
-  TARGET_PDB = Iodine\Core\Renderer\Renderer.pdb
-
-build Iodine\Core\Renderer\CMakeFiles\Renderer.dir\TriangleObject.cc.obj: CXX_COMPILER__Renderer_Debug C$:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\TriangleObject.cc || cmake_object_order_depends_target_Renderer
   DEFINES = -DGLFW_DLL
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   INCLUDES = -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\..\.. -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\..\..\..\third_party -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\Renderer\..\..\..\Iodate -IC:\Users\juded\OneDrive\Documents\Projects\iodine\Iodine\Core\GraphicsAPI\..\..\..\third_party -external:IC:\Users\juded\OneDrive\Documents\Projects\iodine\out\build\x64-Debug\vcpkg_installed\x64-windows\include -external:W0
@@ -241,7 +241,7 @@ build Iodine\Core\Renderer\CMakeFiles\Renderer.dir\__\Shaders\Shader.cc.obj: CXX
 #############################################
 # Link the static library Iodine\Core\Renderer\Renderer.lib
 
-build Iodine\Core\Renderer\Renderer.lib: CXX_STATIC_LIBRARY_LINKER__Renderer_Debug Iodine\Core\Renderer\CMakeFiles\Renderer.dir\Renderer.cc.obj Iodine\Core\Renderer\CMakeFiles\Renderer.dir\SphereObject.cc.obj Iodine\Core\Renderer\CMakeFiles\Renderer.dir\TriangleObject.cc.obj Iodine\Core\Renderer\CMakeFiles\Renderer.dir\__\Shaders\Shader.cc.obj || Iodine\Core\GraphicsAPI\API.lib
+build Iodine\Core\Renderer\Renderer.lib: CXX_STATIC_LIBRARY_LINKER__Renderer_Debug Iodine\Core\Renderer\CMakeFiles\Renderer.dir\CubeObject.cc.obj Iodine\Core\Renderer\CMakeFiles\Renderer.dir\Renderer.cc.obj Iodine\Core\Renderer\CMakeFiles\Renderer.dir\SphereObject.cc.obj Iodine\Core\Renderer\CMakeFiles\Renderer.dir\__\Shaders\Shader.cc.obj || Iodine\Core\GraphicsAPI\API.lib
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = Iodine\Core\Renderer\CMakeFiles\Renderer.dir
