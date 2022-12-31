@@ -1,8 +1,8 @@
 Detecting compiler hash for triplet arm64-osx...
 All requested packages are currently installed.
-Restored 0 package(s) from /Users/judedavis/.cache/vcpkg/archives in 1.084 us. Use --debug to see more details.
+Restored 0 package(s) from /Users/judedavis/.cache/vcpkg/archives in 792 ns. Use --debug to see more details.
 
-Total elapsed time: 2.624 s
+Total elapsed time: 2.207 s
 glad provides CMake targets:
 
     # this is heuristically generated, and may not be correct

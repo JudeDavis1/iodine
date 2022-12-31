@@ -1,11 +1,11 @@
 #include "CubeObject.h"
-#include "Core/GraphicsAPI/Rand.h"
-#include "Core/GraphicsAPI/Image.h"
-
+#include "../GraphicsAPI/Rand.h"
+#include "../GraphicsAPI/Image.h"
 
 
 // To load and free images
 #include <stb/stb_image.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 
 namespace Idn
@@ -112,10 +112,7 @@ namespace Idn
 		m_shader->Use();
 
 		// Camera matrix
-		m_view  = glm::mat4(1);
 		m_model = glm::mat4(1);
-
-		m_view = glm::translate(m_view, glm::vec3(0, 0, -2));
 		m_model = glm::rotate(m_model, (float)glfwGetTime() * 1, glm::vec3(1, 1, 1));
 
 		// Upload projection to opengl
@@ -135,8 +132,6 @@ namespace Idn
 		glBindVertexArray(m_VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 6 * 6);
 		glBindVertexArray(0);
-		
-		i += 0.01;
 	}
 
 	void CubeObject::SetTexture()

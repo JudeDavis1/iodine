@@ -2,6 +2,7 @@
 
 #include "Object.h"
 #include "../Shaders/Shader.h"
+#include "Camera.h"
 
 // OpenGL mathematics and vector/matrix transforms
 #include <glm/glm.hpp>
@@ -36,8 +37,6 @@ namespace Idn
 		GLuint m_VAO, m_VBO, m_tex;
 		std::vector<GLfloat> m_verticies;
 		std::shared_ptr<Idn::Shader> m_shader;
-
-		float i = 0;
 	};
 
 }

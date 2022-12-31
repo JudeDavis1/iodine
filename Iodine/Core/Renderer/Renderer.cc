@@ -14,6 +14,7 @@ Renderer::Renderer(GLFWwindow* window)
 
 void Renderer::Begin()
 {
+	// Begin other objects
 	for (auto object : m_objects)
 		object->Begin();
 }
@@ -28,7 +29,10 @@ void Renderer::NewFrame()
 void Renderer::Render()
 {
 	for (auto object : m_objects)
+	{
+		object->SetCameraPos(this->m_camera.GetPosition());
 		object->Render();
+	}
 }
 
 void Renderer::End()

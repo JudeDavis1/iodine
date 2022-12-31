@@ -10,6 +10,7 @@
 #include <imgui_impl_opengl3.h>
 
 #include <Core/Renderer/Object.h>
+#include <Core/Renderer/Camera.h>
 #include <Core/Renderer/Renderer.h>
 
 
@@ -42,6 +43,5 @@ private:
 	bool m_shouldRender = false;
 	uint32_t m_width, m_height, m_fps = 0;
 	std::shared_ptr<Renderer> m_renderer = nullptr;
-
 };
 

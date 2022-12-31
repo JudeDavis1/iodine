@@ -3,6 +3,7 @@
 
 
 #include "Application.h"
+#include <Iodine/Core/Renderer/Camera.h>
 #include <Iodine/Core/Renderer/CubeObject.h>
 
 #include <chrono>
@@ -13,7 +14,7 @@ Application::Application(const char* title, uint32_t width, uint32_t height)
 	// Setup window
 	m_window = new Window(title, width, height);
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 1; i++)
 		m_window->AddObject(std::make_shared<Idn::CubeObject>());
 	
 	const char* glsl_version = "#version 330";
@@ -24,7 +25,6 @@ Application::Application(const char* title, uint32_t width, uint32_t height)
 	ImGuiIO& io = ImGui::GetIO();
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui_ImplGlfw_InitForOpenGL(m_window->gl_window, true);
-	std::cout << m_window->gl_window << std::endl; 
 	ImGui_ImplOpenGL3_Init(glsl_version);
 }
 

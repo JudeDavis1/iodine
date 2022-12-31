@@ -4,6 +4,8 @@
 #include <iostream>
 
 #include "Object.h"
+#include "Camera.h"
+
 
 class Renderer
 {
@@ -20,6 +22,7 @@ public:
 
 	~Renderer();
 private:
+	Idn::Camera m_camera = Idn::Camera(glm::vec3(0));
 	std::vector<std::shared_ptr<Idn::ObjectBase>> m_objects;
 };
 

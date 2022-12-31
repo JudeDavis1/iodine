@@ -22,6 +22,7 @@ namespace Idn
 		virtual void Render() = 0;
 		virtual void End() = 0;
 		virtual void SetTexture() = 0;
+		void SetCameraPos(const glm::mat4 pos) { m_view = pos; }
 
 		virtual ~ObjectBase() = default;
 	protected:
