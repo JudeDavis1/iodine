@@ -14,7 +14,7 @@ namespace Idn
 	class Camera
 	{
 	public:
-		Camera(glm::vec3& pos)
+		Camera(const glm::vec3& pos)
 		{
 			this->camera_pos = pos;
 		}

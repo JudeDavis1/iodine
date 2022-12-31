@@ -12,7 +12,10 @@ namespace Idn
 {
 	CubeObject::CubeObject()
 	{
-		m_shader = std::make_shared<Idn::Shader>("C:\\Users\\juded\\OneDrive\\Documents\\Projects\\iodine\\Iodine\\Core\\Renderer\\triangle_vtx.glsl", "C:\\Users\\juded\\OneDrive\\Documents\\Projects\\iodine\\Iodine\\Core\\Renderer\\triangle_frag.glsl");
+		m_shader = std::make_shared<Idn::Shader>(
+			"/Users/judedavis/Library/CloudStorage/OneDrive-Personal/Documents/Projects/iodine/Iodine/Core/Renderer/triangle_vtx.glsl",
+			"/Users/judedavis/Library/CloudStorage/OneDrive-Personal/Documents/Projects/iodine/Iodine/Core/Renderer/triangle_frag.glsl"
+		);
 		m_verticies = std::vector<GLfloat>{
 			// Positions			// Texture coords
 		   -0.5f, -0.5f, -0.5f,		0.0f, 0.0f,
@@ -99,8 +102,8 @@ namespace Idn
 
 		float z_near = 0.1f;
 		float z_far = 100.0f;
-		std::cout << *winWIDTH << std::endl;
 		projection = glm::perspective(45.0f, (GLfloat) *winWIDTH / (GLfloat)*winHEIGHT, z_near, z_far);
+		this->SetPosition(glm::vec3(0, 0, -5));
 	}
 
 
@@ -112,14 +115,8 @@ namespace Idn
 		m_view  = glm::mat4(1);
 		m_model = glm::mat4(1);
 
-		m_view = glm::translate(m_view, glm::vec3(0.0f, 0.0f, -2.0f));
-		m_model = glm::rotate(m_model, (float)glfwGetTime() * 1.0f, glm::vec3(-1, 0, 0));
-
-		float x = (float)Idn::rndNi(-1, 1);
-		float y = (float)Idn::rndNi(-1, 1);
-		float z = (float)Idn::rndNi(-1, 1);
-
-		this->SetPosition(glm::vec3(x, y, z));
+		m_view = glm::translate(m_view, glm::vec3(0, 0, -2));
+		m_model = glm::rotate(m_model, (float)glfwGetTime() * 1, glm::vec3(1, 1, 1));
 
 		// Upload projection to opengl
 		GLint viewLoc = glGetUniformLocation(m_shader->GetProgram(), "view");
@@ -144,7 +141,7 @@ namespace Idn
 
 	void CubeObject::SetTexture()
 	{
-		ImageFmt fmt = Idn::Load("C:\\Users\\juded\\Downloads\\texture.jpg", 4);
+		ImageFmt fmt = Idn::Load("/Users/judedavis/Downloads/texture.jpg", 4);
 
 		GLuint tmp_tx;
 		Idn::CreateTexture(fmt.data, fmt.width, fmt.height, &tmp_tx, []() {

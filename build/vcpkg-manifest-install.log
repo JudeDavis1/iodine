@@ -1,0 +1,29 @@
+Detecting compiler hash for triplet arm64-osx...
+All requested packages are currently installed.
+Restored 0 package(s) from /Users/judedavis/.cache/vcpkg/archives in 1.084 us. Use --debug to see more details.
+
+Total elapsed time: 2.624 s
+glad provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(glad CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE glad::glad)
+
+glfw3 provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(glfw3 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE glfw)
+
+glm provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(glm CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE glm::glm)
+
+imgui provides CMake targets:
+
+    # this is heuristically generated, and may not be correct
+    find_package(imgui CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE imgui::imgui)
+

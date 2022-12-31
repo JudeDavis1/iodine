@@ -24,7 +24,7 @@ namespace Idn
 		void End() override;
 		void SetTexture() override;
 
-		inline void SetPosition(glm::vec3& new_pos)
+		inline void SetPosition(const glm::vec3& new_pos)
 		{
 			m_model = glm::translate(m_model, new_pos);
 		}

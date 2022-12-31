@@ -17,7 +17,6 @@ Window::Window(const char* title, uint32_t width, uint32_t height)
 	m_width = width;
 	m_height = height;
 
-	m_renderer = std::make_shared<Renderer>(gl_window);
 
 	// Setup GLFW
 	if (!glfwInit())
@@ -26,7 +25,14 @@ Window::Window(const char* title, uint32_t width, uint32_t height)
 		exit(1);
 	}
 
+#ifdef __APPLE__
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
 	gl_window = glfwCreateWindow(width, height, title, NULL, NULL);
+	m_renderer = std::make_shared<Renderer>(gl_window);
 	
 	if (!gl_window)
 	{

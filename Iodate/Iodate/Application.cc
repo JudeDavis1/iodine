@@ -15,6 +15,8 @@ Application::Application(const char* title, uint32_t width, uint32_t height)
 
 	for (int i = 0; i < 3; i++)
 		m_window->AddObject(std::make_shared<Idn::CubeObject>());
+	
+	const char* glsl_version = "#version 330";
 
 	// Setup ImGui
 	IMGUI_CHECKVERSION();
@@ -22,7 +24,8 @@ Application::Application(const char* title, uint32_t width, uint32_t height)
 	ImGuiIO& io = ImGui::GetIO();
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui_ImplGlfw_InitForOpenGL(m_window->gl_window, true);
-	ImGui_ImplOpenGL3_Init();
+	std::cout << m_window->gl_window << std::endl; 
+	ImGui_ImplOpenGL3_Init(glsl_version);
 }
 
 
