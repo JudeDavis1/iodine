@@ -38,6 +38,27 @@ namespace Idn
 			return this->m_view_mat;
 		}
 
+		const void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+		{
+			// The amount to move
+			float delta = 0.03;
+			switch (key)
+			{
+			case GLFW_KEY_W:
+				this->SetPosition(glm::vec3(m_camera_pos.x, m_camera_pos.y, m_camera_pos.z + delta));
+				break;
+			case GLFW_KEY_A:
+				this->SetPosition(glm::vec3(m_camera_pos.x + delta, m_camera_pos.y, m_camera_pos.z));
+				break;
+			case GLFW_KEY_S:
+				this->SetPosition(glm::vec3(m_camera_pos.x, m_camera_pos.y, m_camera_pos.z - delta));
+				break;
+			case GLFW_KEY_D:
+				this->SetPosition(glm::vec3(m_camera_pos.x - delta, m_camera_pos.y, m_camera_pos.z));
+				break;
+			}
+		}
+
 	private:
 		glm::mat4 m_view_mat;
 		glm::vec3 m_camera_pos;

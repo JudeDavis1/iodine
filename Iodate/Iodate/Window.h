@@ -35,6 +35,7 @@ public:
 	int GetHeight() { return m_height; }
 	void SetHeight(uint32_t height) { this->m_height = height; }
 	void AddObject(std::shared_ptr<Idn::ObjectBase> object) { m_renderer->AddObject(object); }
+	std::shared_ptr<Renderer> GetRenderer() { return m_renderer; }
 
 	~Window();
 private:

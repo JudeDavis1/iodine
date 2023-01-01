@@ -103,7 +103,6 @@ namespace Idn
 		float z_near = 0.1f;
 		float z_far = 100.0f;
 		projection = glm::perspective(45.0f, (GLfloat) *winWIDTH / (GLfloat)*winHEIGHT, z_near, z_far);
-		this->SetPosition(glm::vec3(0, 0, -5));
 	}
 
 

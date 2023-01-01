@@ -15,8 +15,11 @@ Renderer::Renderer(GLFWwindow* window)
 void Renderer::Begin()
 {
 	// Begin other objects
-	for (auto object : m_objects)
-		object->Begin();
+	for (auto object : m_objects) object->Begin();
+
+	// Set default camera position
+	glm::vec3 default_camera_pos = glm::vec3(0, 0, -2);
+	camera.SetPosition(default_camera_pos);
 }
 
 void Renderer::NewFrame()
@@ -30,15 +33,14 @@ void Renderer::Render()
 {
 	for (auto object : m_objects)
 	{
-		object->SetCameraPos(this->m_camera.GetPosition());
+		object->SetCameraPos(this->camera.GetPosition());
 		object->Render();
 	}
 }
 
 void Renderer::End()
 {
-	for (auto object : m_objects)
-		object->End();
+	for (auto object : m_objects) object->End();
 }
 
 Renderer::~Renderer()

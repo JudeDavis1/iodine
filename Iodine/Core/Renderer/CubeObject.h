@@ -27,7 +27,7 @@ namespace Idn
 
 		inline void SetPosition(const glm::vec3& new_pos)
 		{
-			m_model = glm::translate(m_model, new_pos);
+			m_model = glm::translate(glm::mat4(0), new_pos);
 		}
 
 		float GetSize() { return m_size; }

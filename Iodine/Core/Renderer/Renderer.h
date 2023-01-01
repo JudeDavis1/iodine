@@ -10,6 +10,7 @@
 class Renderer
 {
 public:
+	Idn::Camera camera = Idn::Camera(glm::vec3(0));
 
 	Renderer(GLFWwindow* window);
 
@@ -22,7 +23,6 @@ public:
 
 	~Renderer();
 private:
-	Idn::Camera m_camera = Idn::Camera(glm::vec3(0));
 	std::vector<std::shared_ptr<Idn::ObjectBase>> m_objects;
 };
 
