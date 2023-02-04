@@ -3,18 +3,23 @@
 
 
 #include "Application.h"
-#include <Iodine/Core/Renderer/TriangleObject.h>
+#include <Iodine/Core/Renderer/Camera.h>
+#include <Iodine/Core/Renderer/CubeObject.h>
+#include <Iodine/Core/Renderer/SphereObject.h>
+
 
 #include <chrono>
 
 
-Application::Application(const char* title, int width, int height)
+Application::Application(const char* title, uint32_t width, uint32_t height)
 {
 	// Setup window
 	m_window = new Window(title, width, height);
 
-	for (int i = 0; i < 5; i++)
-		m_window->AddObject(std::make_shared<Idn::TriangleObject>());
+	for (int i = 0; i < 1; i++)
+		m_window->AddObject(std::make_shared<Idn::SphereObject>());
+	
+	const char* glsl_version = "#version 330";
 
 	// Setup ImGui
 	IMGUI_CHECKVERSION();
@@ -22,7 +27,9 @@ Application::Application(const char* title, int width, int height)
 	ImGuiIO& io = ImGui::GetIO();
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui_ImplGlfw_InitForOpenGL(m_window->gl_window, true);
-	ImGui_ImplOpenGL3_Init();
+	ImGui_ImplOpenGL3_Init(glsl_version);
+
+	glfwSetWindowUserPointer(m_window->gl_window, (void *)m_window);
 }
 
 
@@ -51,7 +58,19 @@ void Application::Run()
 		if (glfwGetKey(m_window->gl_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(m_window->gl_window, true);
 		
-		glClear(GL_COLOR_BUFFER_BIT);
+		glfwSetKeyCallback(m_window->gl_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+			// Get the address of the instance of the class that is holding the GLFWwindow
+			auto window_instance = static_cast<Window*>(glfwGetWindowUserPointer(window));
+			window_instance->GetRenderer()->camera.KeyCallback(
+				window,
+				key,
+				scancode,
+				action,
+				mods
+			);
+		});
+		
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		int width, height;
 		glfwGetWindowSize(m_window->gl_window, &width, &height);

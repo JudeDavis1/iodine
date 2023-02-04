@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/imgui-arm64-osx-1.88#1-b2926d8a-87da-4661-8040-5249f18465e7",
-  "name": "imgui:arm64-osx@1.88#1 64c3369cc677671992bc7b6b4defec8833458158f8af3fe5d9134ae8aa379669",
+  "documentNamespace": "https://spdx.org/spdxdocs/imgui-arm64-osx-1.88#1-48956dd0-3ca1-40ac-bc2a-2df3a0844113",
+  "name": "imgui:arm64-osx@1.88#1 e1937f24fef4af9b2a6032ddd9c492e1765ad3ef01dc143cdf137fa1ac2eac97",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2022.09.20"
+      "Tool: vcpkg-522aa94e9d261c7d7b2f079bf2591ca62df5c714"
     ],
-    "created": "2022-10-04T14:12:53Z"
+    "created": "2022-12-29T14:07:07Z"
   },
   "relationships": [
     {
@@ -84,7 +84,7 @@
     {
       "name": "imgui:arm64-osx",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "64c3369cc677671992bc7b6b4defec8833458158f8af3fe5d9134ae8aa379669",
+      "versionInfo": "e1937f24fef4af9b2a6032ddd9c492e1765ad3ef01dc143cdf137fa1ac2eac97",
       "downloadLocation": "NONE",
       "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",

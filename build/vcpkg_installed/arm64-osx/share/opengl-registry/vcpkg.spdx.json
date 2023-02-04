@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/opengl-registry-arm64-osx-2021-11-17-efdaaa0b-94c1-4a35-966b-3f38f3c96f7d",
-  "name": "opengl-registry:arm64-osx@2021-11-17 f0ccce1f3b6c12703125804e9d8ac95dd710a4c86edfeb65ec869be6f45b7793",
+  "documentNamespace": "https://spdx.org/spdxdocs/opengl-registry-arm64-osx-2021-11-17-ce93c364-eb6f-431f-9cf9-851d09bee841",
+  "name": "opengl-registry:arm64-osx@2021-11-17 f9ac1389299b1986ec038543039072743a9b590fefcf0e6942a0481c21e90ce3",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2022.09.20"
+      "Tool: vcpkg-522aa94e9d261c7d7b2f079bf2591ca62df5c714"
     ],
-    "created": "2022-10-04T14:12:13Z"
+    "created": "2022-12-29T14:06:57Z"
   },
   "relationships": [
     {
@@ -64,7 +64,7 @@
     {
       "name": "opengl-registry:arm64-osx",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "f0ccce1f3b6c12703125804e9d8ac95dd710a4c86edfeb65ec869be6f45b7793",
+      "versionInfo": "f9ac1389299b1986ec038543039072743a9b590fefcf0e6942a0481c21e90ce3",
       "downloadLocation": "NONE",
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",

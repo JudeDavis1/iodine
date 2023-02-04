@@ -18,17 +18,16 @@ namespace Idn
 	void SphereObject::End() {}
 
 
-	void SphereObject::Render()
-	{
+	// void SphereObject::Render()
+	// {
 
-	}
+	// }
 
-	/*
 	void SphereObject::Render()
 	{
 		GLuint txtr;
 		float d = m_radius * 2;
-		uint32_t* img_data = new uint32_t[d * d];
+		uint32_t* img_data = new uint32_t[(int)(d * d)];
 
 		for (uint32_t y = 0; y < d; y++)
 		{
@@ -77,5 +76,4 @@ namespace Idn
 
 		return glm::vec4(sphereColor, 1.0f);
 	}
-	*/
 }

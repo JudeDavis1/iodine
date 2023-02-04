@@ -1,8 +1,0 @@
-Package: egl-registry
-Version: 2021-11-23
-Architecture: arm64-osx
-Multi-Arch: same
-Abi: 9d3b27bbe2ec35d4f017fb9e5e33e22caf097219cadabcf152e3f1d4eab55003
-Description: the EGL API and Extension Registry
-Type: Port
-Status: install ok half-installed

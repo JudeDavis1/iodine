@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/glad-arm64-osx-0.1.36-8a26074b-ca19-482d-a1b4-510b920e09a2",
-  "name": "glad:arm64-osx@0.1.36 bf1bdbd36f6299f246c75f0c14be12fc995fd1ae65726d7856a062b9d468a308",
+  "documentNamespace": "https://spdx.org/spdxdocs/glad-arm64-osx-0.1.36-ea51ab77-7ea7-4b9d-bbaf-4bc2f81cd492",
+  "name": "glad:arm64-osx@0.1.36 8ec53a359c6144c9f552bdba249d4c095f5935d386a3ff9b316830e319e7d859",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2022.09.20"
+      "Tool: vcpkg-522aa94e9d261c7d7b2f079bf2591ca62df5c714"
     ],
-    "created": "2022-10-04T14:12:17Z"
+    "created": "2022-12-29T14:07:00Z"
   },
   "relationships": [
     {
@@ -84,7 +84,7 @@
     {
       "name": "glad:arm64-osx",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "bf1bdbd36f6299f246c75f0c14be12fc995fd1ae65726d7856a062b9d468a308",
+      "versionInfo": "8ec53a359c6144c9f552bdba249d4c095f5935d386a3ff9b316830e319e7d859",
       "downloadLocation": "NONE",
       "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",

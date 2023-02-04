@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/glfw3-arm64-osx-3.3.8-3032ac2c-3adb-4a49-b7b9-eced2158a96e",
-  "name": "glfw3:arm64-osx@3.3.8 a18a9431705c30c46cf704c4f07063cb710d084f74edcb14b0935851994b115e",
+  "documentNamespace": "https://spdx.org/spdxdocs/glfw3-arm64-osx-3.3.8-5e940d9c-fd88-4634-9708-1dab82e27ceb",
+  "name": "glfw3:arm64-osx@3.3.8 9d48e34a20d6e872493f45ff85f2f91222e1d5842b29fc3dbb56df460406545b",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2022.09.20"
+      "Tool: vcpkg-522aa94e9d261c7d7b2f079bf2591ca62df5c714"
     ],
-    "created": "2022-10-04T14:12:47Z"
+    "created": "2022-12-29T14:07:03Z"
   },
   "relationships": [
     {
@@ -64,7 +64,7 @@
     {
       "name": "glfw3:arm64-osx",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "a18a9431705c30c46cf704c4f07063cb710d084f74edcb14b0935851994b115e",
+      "versionInfo": "9d48e34a20d6e872493f45ff85f2f91222e1d5842b29fc3dbb56df460406545b",
       "downloadLocation": "NONE",
       "licenseConcluded": "Zlib",
       "licenseDeclared": "NOASSERTION",

@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/egl-registry-arm64-osx-2021-11-23-793fd329-a274-450b-bd24-9f341ff6d9e2",
-  "name": "egl-registry:arm64-osx@2021-11-23 9d3b27bbe2ec35d4f017fb9e5e33e22caf097219cadabcf152e3f1d4eab55003",
+  "documentNamespace": "https://spdx.org/spdxdocs/egl-registry-arm64-osx-2021-11-23-e5c8317a-cf6a-4729-8052-a5af55315ecf",
+  "name": "egl-registry:arm64-osx@2021-11-23 4ab419f1daee01533f884fe7154580b82bf5da3439d445c47fc66c499c4e6c63",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2022.09.20"
+      "Tool: vcpkg-522aa94e9d261c7d7b2f079bf2591ca62df5c714"
     ],
-    "created": "2022-10-04T14:11:56Z"
+    "created": "2022-12-29T14:06:56Z"
   },
   "relationships": [
     {
@@ -64,7 +64,7 @@
     {
       "name": "egl-registry:arm64-osx",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "9d3b27bbe2ec35d4f017fb9e5e33e22caf097219cadabcf152e3f1d4eab55003",
+      "versionInfo": "4ab419f1daee01533f884fe7154580b82bf5da3439d445c47fc66c499c4e6c63",
       "downloadLocation": "NONE",
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",

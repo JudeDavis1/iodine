@@ -1,4 +1,4 @@
-# Install script for directory: /Users/judedavis/Library/CloudStorage/OneDrive-Personal/Documents/Projects/iodine/Iodine/Core/Shaders
+# Install script for directory: /Users/judedavis/OneDrive/Documents/Projects/iodine/Iodine/Core/Shaders
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

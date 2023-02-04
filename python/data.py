@@ -12,7 +12,7 @@ import config
 
 
 def run():
-    vc = cv2.VideoCapture(0)
+    vc = cv2.VideoCapture(1)
 
     mode = sys.argv[1]
 
@@ -59,9 +59,9 @@ def load_data():
 class IMGDataset(Dataset):
 
     def __init__(self, transform: torchvision.transforms.Compose=None):
-        if transform:
-            self.data = [(transform(img), torch.tensor(label).float()) for img, label in load_data()]
         self.data = load_data()
+        if transform:
+            self.data = [(transform(img), torch.tensor(label).float()) for img, label in self.data]
 
     def __len__(self):
         return len(self.data)
