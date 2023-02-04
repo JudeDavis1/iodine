@@ -8,7 +8,6 @@
 
 namespace Idn
 {
-	std::default_random_engine _generator;
 
 	bool CreateTexture(const uint8_t* image_data,
 		int width,
@@ -17,7 +16,7 @@ namespace Idn
 		void (*texParams)(void),  // void Function which sets up texture parameters
 		int target_dim)
 	{
-		if (!image_data)
+		if (image_data == nullptr || image_data == NULL)
 		{
 			std::cout << "ERROR: The image provided is NULL!" << std::endl;
 			return false;
@@ -63,9 +62,10 @@ namespace Idn
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	}
+
 	int rndNi(int low, int high)
 	{
-		
+		std::default_random_engine _generator;
 		std::uniform_int_distribution<int> dist(low, high);
 
 		return dist(_generator);

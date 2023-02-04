@@ -20,7 +20,7 @@ public:
 	void Run();
 
 	// Init GLFW and window
-	Application(const char* title, uint32_t width = 500, uint32_t height = 400);
+	Application(const char* title, int width = 500, int height = 400);
 	~Application();
 private:
 	// Pointer to the main opaque window object

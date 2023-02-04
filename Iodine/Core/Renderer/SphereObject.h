@@ -22,7 +22,6 @@ namespace Idn
 
 		float GetRadius() { return m_radius; }
 		void SetRadius(float r) { m_radius = r; }
-		void SetTexture() {}
 
 	private:
 		float m_radius = 200;

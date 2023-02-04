@@ -1,0 +1,9 @@
+Package: opengl-registry
+Version: 2021-11-17
+Depends: egl-registry
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: f0ccce1f3b6c12703125804e9d8ac95dd710a4c86edfeb65ec869be6f45b7793
+Description: the API and Extension registries for the OpenGL family APIs
+Type: Port
+Status: install ok installed
