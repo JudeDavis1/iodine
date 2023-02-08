@@ -27,6 +27,7 @@ arm64-osx/include/glm/detail/func_trigonometric.inl
 arm64-osx/include/glm/detail/func_trigonometric_simd.inl
 arm64-osx/include/glm/detail/func_vector_relational.inl
 arm64-osx/include/glm/detail/func_vector_relational_simd.inl
+arm64-osx/include/glm/detail/glm.cpp
 arm64-osx/include/glm/detail/qualifier.hpp
 arm64-osx/include/glm/detail/setup.hpp
 arm64-osx/include/glm/detail/type_float.hpp

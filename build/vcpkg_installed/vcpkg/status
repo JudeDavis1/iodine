@@ -3,33 +3,33 @@ Version: 2022-02-06
 Port-Version: 1
 Architecture: arm64-osx
 Multi-Arch: same
-Abi: 473e425c38e14c13a1623c5009f873187f6d13ebe0d07afcba7a5579234ec27e
+Abi: 51166de259888fd342ee2fc8145226678d3b1d04cf278a8687704a17bd8b38e9
 Type: Port
 Status: install ok installed
 
 Package: vcpkg-cmake
-Version: 2022-08-18
+Version: 2022-12-22
 Architecture: arm64-osx
 Multi-Arch: same
-Abi: 1fb0d833b94965a94d7eec72c8e9dd2bcd27a73bb42e29028550437df059baba
+Abi: 152a45ac2623c417dfe9126ec151281a148bca41fb9c61aefcd1f4cb796cfdd8
 Type: Port
 Status: install ok installed
 
 Package: egl-registry
-Version: 2021-11-23
+Version: 2022-09-20
 Architecture: arm64-osx
 Multi-Arch: same
-Abi: 4ab419f1daee01533f884fe7154580b82bf5da3439d445c47fc66c499c4e6c63
+Abi: f4e8d1bccbb67df3e7a3683354fd8ab016e4f6c17c551b737f3fa892b6675d01
 Description: the EGL API and Extension Registry
 Type: Port
 Status: install ok installed
 
 Package: opengl-registry
-Version: 2021-11-17
+Version: 2022-09-29
 Depends: egl-registry
 Architecture: arm64-osx
 Multi-Arch: same
-Abi: f9ac1389299b1986ec038543039072743a9b590fefcf0e6942a0481c21e90ce3
+Abi: cbb696c3003f33caa351835ebc50012261429b389b3eadeff66ea3adbca5a3f8
 Description: the API and Extension registries for the OpenGL family APIs
 Type: Port
 Status: install ok installed
@@ -39,7 +39,7 @@ Version: 0.1.36
 Depends: egl-registry, opengl-registry, vcpkg-cmake, vcpkg-cmake-config
 Architecture: arm64-osx
 Multi-Arch: same
-Abi: 8ec53a359c6144c9f552bdba249d4c095f5935d386a3ff9b316830e319e7d859
+Abi: 6d2558010e6e3aa9ab34caf10e1c9e7bd52de00fa0c8d82431ce33af3b181f45
 Description: Multi-Language Vulkan/GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs.
 Type: Port
 Default-Features: loader
@@ -55,31 +55,32 @@ Status: install ok installed
 
 Package: glfw3
 Version: 3.3.8
+Port-Version: 2
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: arm64-osx
 Multi-Arch: same
-Abi: 9d48e34a20d6e872493f45ff85f2f91222e1d5842b29fc3dbb56df460406545b
+Abi: 6999ac6f94b5cde9cd4ba3b6634a76634b1a115be4dbb2a63311c6d7af75ad99
 Description: GLFW is a free, Open Source, multi-platform library for OpenGL, OpenGL ES and Vulkan application development. It provides a simple, platform-independent API for creating windows, contexts and surfaces, reading input, handling events, etc.
 Type: Port
 Status: install ok installed
 
 Package: glm
 Version: 0.9.9.8
-Port-Version: 1
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: arm64-osx
 Multi-Arch: same
-Abi: 81531d068851e750b8b760056c8b85add051278242281588e2b284116a89c231
+Abi: 68e74eb908e61794e66c07b512c6803302070aece51ec35d32bfdecb43fd7e59
 Description: OpenGL Mathematics (GLM)
 Type: Port
 Status: install ok installed
 
 Package: imgui
-Version: 1.88
-Port-Version: 1
+Version: 1.89.2
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: arm64-osx
 Multi-Arch: same
-Abi: e1937f24fef4af9b2a6032ddd9c492e1765ad3ef01dc143cdf137fa1ac2eac97
+Abi: 8e848a508f802ae9ddbd04b4d777a71e507386f3da57df7261bd09ef843c1f33
 Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
 Type: Port
 Status: install ok installed

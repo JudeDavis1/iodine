@@ -1,67 +1,63 @@
 import os
-import sys
 import cv2
-import torch
-import random
 import torchvision
+import torch
+import json
 import numpy as np
-
+from typing import Tuple
 from torch.utils.data import Dataset
+from matplotlib import pyplot as plt
+from tqdm import tqdm
+from torch.nn import functional as F
 
 import config
 
+ROOT = './data'
 
-def run():
-    vc = cv2.VideoCapture(1)
 
-    mode = sys.argv[1]
-
-    i = 0
-    while True:
-        _, frame = vc.read()
-        frame = cv2.cvtColor(cv2.resize(frame, (config.WIDTH, config.HEIGHT)), cv2.IMREAD_GRAYSCALE)
-        cv2.imshow('Your frame', frame)
-
-        rnd = random.randbytes(10).hex()
-        if mode == 'hand':
-            cv2.imwrite(f'data/hand/img{rnd}.jpg', frame)
-        elif mode == 'no_hand':
-            cv2.imwrite(f'data/no_hand/img{rnd}.jpg', frame)
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-        if i >= 1000:
-            break
-
-        i += 1
-
-    vc.release()
-
-def load_data():
+def load_data(transform):
+    critical_key = 'hand_pts'
+    files = os.listdir(ROOT)
+    max_files = len(files)
+    t = tqdm(range(max_files))
     data = []
 
-    label = 1
-    for img_file in os.listdir('data/hand'):
-        img = cv2.imread(os.path.join('data/hand', img_file), cv2.COLOR_BGR2GRAY)
+    for file in files:
+        fname = os.path.join('.', ROOT, file)
 
-        data.append((img, label))
+        if fname.endswith('.json'):
+            # the name of the file (without extension)
+            name = fname.strip('.json')
+            json_data = json.load(open(fname, encoding='utf-8'))
+            pts = get_critical_points(json_data, critical_key)
 
-    label = 0
-    for img_file in os.listdir('data/no_hand'):
-        img = cv2.imread(os.path.join('data/no_hand', img_file), cv2.COLOR_BGR2GRAY)
-
-        data.append((img, label))
-
+            img = cv2.imread('.' + name + '.jpg')
+            data.append([transform(img), pts])
+            # plt.imshow(transform(img).detach().numpy().transpose(1, 2, 0))
+            # plt.scatter(pts[0] * config.WIDTH, pts[1] * config.HEIGHT, s=100, c='black')
+            # plt.show()
+        
+        t.update(1)
+    
     return data
 
+
+def get_critical_points(json, key) -> Tuple[np.ndarray]:
+    x = []
+    y = []
+
+    for pt in json[key]:
+        x.append(float(pt[0]))
+        y.append(float(pt[1]))
+    
+    x = torch.tensor(x)
+    y = torch.tensor(y)
+    return torch.stack([x.mean() / config.WIDTH, y.mean() / config.HEIGHT])
 
 class IMGDataset(Dataset):
 
     def __init__(self, transform: torchvision.transforms.Compose=None):
-        self.data = load_data()
-        if transform:
-            self.data = [(transform(img), torch.tensor(label).float()) for img, label in self.data]
+        self.data = load_data(transform)
 
     def __len__(self):
         return len(self.data)
@@ -71,5 +67,4 @@ class IMGDataset(Dataset):
 
 
 if __name__ == '__main__':
-    run()
-    cv2.destroyAllWindows()
+    load_data()
