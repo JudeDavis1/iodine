@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/opengl-registry-arm64-osx-2021-11-17-ce93c364-eb6f-431f-9cf9-851d09bee841",
-  "name": "opengl-registry:arm64-osx@2021-11-17 f9ac1389299b1986ec038543039072743a9b590fefcf0e6942a0481c21e90ce3",
+  "documentNamespace": "https://spdx.org/spdxdocs/opengl-registry-arm64-osx-2022-09-29-d432bb24-b10d-4f78-8cb2-6cb7135e3930",
+  "name": "opengl-registry:arm64-osx@2022-09-29 cbb696c3003f33caa351835ebc50012261429b389b3eadeff66ea3adbca5a3f8",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-522aa94e9d261c7d7b2f079bf2591ca62df5c714"
+      "Tool: vcpkg-2023.01.24"
     ],
-    "created": "2022-12-29T14:06:57Z"
+    "created": "2023-02-08T18:39:24Z"
   },
   "relationships": [
     {
@@ -52,7 +52,7 @@
     {
       "name": "opengl-registry",
       "SPDXID": "SPDXRef-port",
-      "versionInfo": "2021-11-17",
+      "versionInfo": "2022-09-29",
       "downloadLocation": "NOASSERTION",
       "homepage": "https://github.com/KhronosGroup/OpenGL-Registry",
       "licenseConcluded": "NOASSERTION",
@@ -64,7 +64,7 @@
     {
       "name": "opengl-registry:arm64-osx",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "f9ac1389299b1986ec038543039072743a9b590fefcf0e6942a0481c21e90ce3",
+      "versionInfo": "cbb696c3003f33caa351835ebc50012261429b389b3eadeff66ea3adbca5a3f8",
       "downloadLocation": "NONE",
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
@@ -74,14 +74,14 @@
     {
       "SPDXID": "SPDXRef-resource-1",
       "name": "KhronosGroup/OpenGL-Registry",
-      "downloadLocation": "git+https://github.com/KhronosGroup/OpenGL-Registry@a48c224a2db6edc4f4c610025b529d1c31ee9445",
+      "downloadLocation": "git+https://github.com/KhronosGroup/OpenGL-Registry@5bae8738b23d06968e7c3a41308568120943ae77",
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
       "copyrightText": "NOASSERTION",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "30cfb1f8979676298e72604898879dae31953839acffc203027165fc131e74dafcf827fdeb07e64021fb8e8318bca38fa4d8656d8248f7bfba76e01d24895818"
+          "checksumValue": "3f8c58474627ded85d95f8a4d86329ec4f55b179eb2df393983462d42088e9496eef1a5980481f4b085e6ffb749cd5dd3b312a1e2b7b8189d9723a673ec65b0d"
         }
       ]
     }
@@ -93,7 +93,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "b733b3baed6860464ea6e1773ee348d2e7e88e7e65b7a8a0539703f216777a30"
+          "checksumValue": "36daba38de28b8fecd57f96ce43cc97df0c02c3d3aa8451db7aeadfa3e766324"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -105,7 +105,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "89162578a8754afae5eee0e2df7a17913f6e974bc9cd1be413476a02ab12bb67"
+          "checksumValue": "ae3008e4eb3f6b76131f42d1062fa2bbe14907945b069ecc6e918d416d8772df"
         }
       ],
       "licenseConcluded": "NOASSERTION",

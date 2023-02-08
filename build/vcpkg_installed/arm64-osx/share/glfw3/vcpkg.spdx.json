@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/glfw3-arm64-osx-3.3.8-5e940d9c-fd88-4634-9708-1dab82e27ceb",
-  "name": "glfw3:arm64-osx@3.3.8 9d48e34a20d6e872493f45ff85f2f91222e1d5842b29fc3dbb56df460406545b",
+  "documentNamespace": "https://spdx.org/spdxdocs/glfw3-arm64-osx-3.3.8#2-2bf90e7c-772f-45ea-a564-bf707c17f409",
+  "name": "glfw3:arm64-osx@3.3.8#2 6999ac6f94b5cde9cd4ba3b6634a76634b1a115be4dbb2a63311c6d7af75ad99",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-522aa94e9d261c7d7b2f079bf2591ca62df5c714"
+      "Tool: vcpkg-8a88d63f241d391772fbde69af9cab96c3c64c75"
     ],
-    "created": "2022-12-29T14:07:03Z"
+    "created": "2023-02-08T18:40:38Z"
   },
   "relationships": [
     {
@@ -52,7 +52,7 @@
     {
       "name": "glfw3",
       "SPDXID": "SPDXRef-port",
-      "versionInfo": "3.3.8",
+      "versionInfo": "3.3.8#2",
       "downloadLocation": "NOASSERTION",
       "homepage": "https://github.com/glfw/glfw",
       "licenseConcluded": "Zlib",
@@ -64,7 +64,7 @@
     {
       "name": "glfw3:arm64-osx",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "9d48e34a20d6e872493f45ff85f2f91222e1d5842b29fc3dbb56df460406545b",
+      "versionInfo": "6999ac6f94b5cde9cd4ba3b6634a76634b1a115be4dbb2a63311c6d7af75ad99",
       "downloadLocation": "NONE",
       "licenseConcluded": "Zlib",
       "licenseDeclared": "NOASSERTION",
@@ -93,7 +93,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "49532766872cdab9f6be312f82edfafdbe71202f7ff1097c677e20d0b4b64751"
+          "checksumValue": "ee3007acd42e3ae7c25d1896f64196be3ef5ab7925e6684ade157e2c7cc18072"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -105,7 +105,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "62d09e7ff7f9d1bc2d9f8d967c773191cc639592030caff30487e80ab7823e23"
+          "checksumValue": "68f6f5ff2efd2edd02ccdffe5babd300b4de256515bd36860d0ba8975533b3f3"
         }
       ],
       "licenseConcluded": "NOASSERTION",

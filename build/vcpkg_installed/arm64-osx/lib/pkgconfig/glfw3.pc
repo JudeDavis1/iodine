@@ -1,5 +1,4 @@
 prefix=${pcfiledir}/../..
-
 exec_prefix=${prefix}
 includedir=${prefix}/include
 libdir=${prefix}/lib
@@ -8,6 +7,7 @@ Name: GLFW
 Description: A multi-platform library for OpenGL, window and input
 Version: 3.3.8
 URL: https://www.glfw.org/
-Libs: -L"${libdir}" -lglfw3 -framework Cocoa -framework IOKit -framework CoreFoundation
+
+Libs: "-L${libdir}" -lglfw3 -framework Cocoa -framework IOKit -framework CoreFoundation
 Requires: 
-Cflags: -I"${includedir}"
+Cflags: "-I${includedir}"

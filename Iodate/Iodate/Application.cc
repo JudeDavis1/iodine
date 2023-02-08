@@ -17,7 +17,7 @@ Application::Application(const char* title, uint32_t width, uint32_t height)
 	m_window = new Window(title, width, height);
 
 	for (int i = 0; i < 1; i++)
-		m_window->AddObject(std::make_shared<Idn::SphereObject>());
+		m_window->AddObject(std::make_shared<Idn::CubeObject>());
 	
 	const char* glsl_version = "#version 330";
 
