@@ -1,8 +1,9 @@
 import warnings
 warnings.filterwarnings('ignore')
 
-import cv2
 import torch
+import time
+import numpy as np
 
 from matplotlib import pyplot as plt
 from torch import nn
@@ -10,7 +11,7 @@ from tqdm import tqdm
 from torchvision.transforms import Compose
 from torch.utils.data.dataloader import DataLoader
 
-from data import IMGDataset
+from data import IMGDataset, N_KEYPOINTS
 import config
 
 
@@ -18,73 +19,88 @@ import config
 CHANNELS = 1
 
 
-class Trainer:
+class Runner:
     
     def __init__(
         self,
+        device: str="cpu",
+    ):
+        self.device = torch.device(device)
+        self.model = HandDTTR()
+    
+    def fit(
+        self,
         epochs: int=10,
         lr: float=0.002,
-        device: str="cpu",
         batch_size: int=32,
-        transform: Compose=None
+        transform: Compose=None,
+        max_data: int=5000
     ):
         self.epochs = epochs
         self.batch_size = batch_size
         self.lr = lr
-        self.device = torch.device(device)
-        self.model = HandDTTR()
-        self.dataset = IMGDataset(transform)
-    
-    def fit(self):
         self.model = self.model.to(self.device)
+        self.dataset = IMGDataset(transform, max_data=max_data)
+
+        self.model.train()
 
         optimizer = torch.optim.Adam(
             self.model.parameters(),
             self.lr,
-            (0.9, 0.999)
+            betas=(0.99, 0.999)
         )
-        criterion = nn.CrossEntropyLoss()
+        criterion = LogCoshLoss()
+
+        # use this to make the batch selection easier
         loader = DataLoader(
             self.dataset,
             self.batch_size,
             shuffle=True
         )
-
-        t_steps = len(loader)
+        
         try:
-            for epoch in (t := tqdm(range(1, self.epochs + 1))):
-                for j, (img, y) in enumerate(loader):
-                    optimizer.zero_grad()
-                    y = y.T.flatten()
-                    output: torch.Tensor = self.model(img.to(self.device)).float()
-                    loss = criterion(output.flatten(), y.to(self.device).float())
+            print('[*] Beginning training...')
+            for step in (t := tqdm(range(1, self.epochs + 1))):
+                optimizer.zero_grad(set_to_none=True)
 
+                # get the next batch from the loader
+                img, y = next(iter(loader))
+                y = y.flatten()
+                output: torch.Tensor = self.model(img.to(self.device)).float()
+                loss: torch.Tensor = criterion(output.flatten(), y.to(self.device).float())
 
-                    loss.backward()
-                    optimizer.step()
+                loss.backward()
+                optimizer.step()
 
-                    if j % 100 == 0:
-                        subject = img[0].to(self.device).unsqueeze(0)
-                        reg_img = subject[0].cpu().numpy().transpose(1, 2, 0)
-                        pt = self.model(subject)[0].cpu().detach()
-                        t.set_description(f"{loss} {j + 1}/{t_steps} {pt}")
-                        plt.imshow(reg_img)
-                        plt.scatter(pt[0] * config.WIDTH, pt[1] * config.HEIGHT, s=100, c='black')
-                        plt.show()
-                    t.set_description(f"{loss} {j + 1}/{t_steps}")
-
-
-                self.model.save('HandDTTR.model')
-        except KeyboardInterrupt:
-            pass    
+                t.set_description(f"{loss}")
+            self.model.save('HandDTTR.model')
+        except KeyboardInterrupt: pass
         print('Saved!')
     
-    def evaluate(self):
-        correct = 0
-        for (x, y) in self.dataset[:30]:
-            output = self.model(x)
-            prediction = round(output)
-            print(prediction)
+    def predict(self, img: torch.Tensor):
+        subject = img.to(self.device).unsqueeze(0)
+        output = self.model(subject).cpu().detach().numpy()
+
+        x_norm, y_norm = np.array_split(output.flatten(), 2)
+        return (x_norm * config.WIDTH, y_norm * config.HEIGHT)
+    
+    def evaluate(self, img):
+        subject = img.to(self.device).unsqueeze(0)
+        reg_img = subject[0].cpu().numpy().transpose(1, 2, 0)
+        output = self.model(subject).cpu().detach().numpy()
+
+        output = np.array_split(output.flatten(), 2)
+        plt.imshow(reg_img)
+        plt.scatter(output[0] * config.WIDTH, output[1] * config.HEIGHT, s=100, c='black')
+        plt.show()
+
+
+class LogCoshLoss(nn.Module):
+
+    def __init__(self): super().__init__()
+
+    def forward(self, prediction, real):
+        return torch.mean(torch.log(torch.cosh(prediction - real)))
 
 
 class HandDTTR(nn.Module):
@@ -93,34 +109,26 @@ class HandDTTR(nn.Module):
         super().__init__()
 
         self._featuremap = 64
+        self._kernel_size = 4
         self.feature_extractor = nn.Sequential(
-            nn.Conv2d(CHANNELS, self._featuremap * 2, 4, bias=False),
-            nn.LeakyReLU(),
-            nn.BatchNorm2d(self._featuremap * 2),
-            nn.MaxPool2d(2, 2),
-            nn.Conv2d(self._featuremap * 2, self._featuremap, 4, bias=False),
-            nn.LeakyReLU(),
-            nn.BatchNorm2d(self._featuremap),
-            nn.MaxPool2d(2, 2),
-            nn.Conv2d(self._featuremap, 4, 4, bias=False),
-            nn.LeakyReLU(),
-            nn.AdaptiveAvgPool2d((1, 1))
+            *self._conv_block(CHANNELS, self._featuremap * 2),
+            *self._conv_block(self._featuremap * 2, self._featuremap),
+            *self._conv_block(self._featuremap, 4),
         )
 
         self.regressor = nn.Sequential(
             FlattenExcludeBatchDim(),
-            nn.LazyLinear(512),
-            nn.ReLU(),
-            nn.Linear(512, 128),
-            nn.ReLU(),
-            nn.Linear(128, 2),
+            nn.LazyLinear(128),
+            nn.Linear(128, 128),
+            nn.Linear(128, 2 * N_KEYPOINTS),
+            nn.Sigmoid()
         )
 
-        self.dropout = nn.Dropout(.3)
+        self.dropout = nn.Dropout(0.01)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         features = self.feature_extractor(x)
-        logits = self.regressor(features)
+        logits = self.dropout(self.regressor(features))
 
         return logits
 
@@ -129,7 +137,14 @@ class HandDTTR(nn.Module):
 
     def load(self, path: str):
         self.load_state_dict(torch.load(path))
-
+    
+    def _conv_block(self, in_dim, out_dim):
+        return [
+            nn.Conv2d(in_dim, out_dim, self._kernel_size, bias=False),
+            nn.BatchNorm2d(out_dim),
+            nn.LeakyReLU(inplace=True),
+            nn.MaxPool2d(2, 2),
+        ]
 
 
 class FlattenExcludeBatchDim(nn.Module):

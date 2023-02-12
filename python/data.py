@@ -3,61 +3,72 @@ import cv2
 import torchvision
 import torch
 import json
+import random
 import numpy as np
-from typing import Tuple
 from torch.utils.data import Dataset
 from matplotlib import pyplot as plt
 from tqdm import tqdm
-from torch.nn import functional as F
 
 import config
 
-ROOT = './data'
+
+IMG_ROOT = './data/evaluation/rgb'
+JSON_ROOT = './data/freihand_train.json'
+N_KEYPOINTS = 21  # standard for this dataset
+UPDATE_INTER = 200
 
 
-def load_data(transform):
-    critical_key = 'hand_pts'
-    files = os.listdir(ROOT)
-    max_files = len(files)
-    t = tqdm(range(max_files))
+def load_data(max_data, transform=None):
     data = []
+    json_data = json.load(open(JSON_ROOT))
+    random.shuffle(json_data)
 
-    for file in files:
-        fname = os.path.join('.', ROOT, file)
+    t = tqdm(range(max_data), leave=True)
+    for i, object in enumerate(json_data):
+        if i % UPDATE_INTER == 0:
+            t.update(UPDATE_INTER)
 
-        if fname.endswith('.json'):
-            # the name of the file (without extension)
-            name = fname.strip('.json')
-            json_data = json.load(open(fname, encoding='utf-8'))
-            pts = get_critical_points(json_data, critical_key)
+        img_path = os.path.join(IMG_ROOT, str(object['id']) + '.jpg')
+        img = cv2.imread(img_path, cv2.IMREAD_COLOR)
+        if transform:
+            img = transform(img)
 
-            img = cv2.imread('.' + name + '.jpg')
-            data.append([transform(img), pts])
-            # plt.imshow(transform(img).detach().numpy().transpose(1, 2, 0))
-            # plt.scatter(pts[0] * config.WIDTH, pts[1] * config.HEIGHT, s=100, c='black')
-            # plt.show()
-        
-        t.update(1)
-    
+        coords = np.array_split(json_data[i]['keypoints'], N_KEYPOINTS)
+        tensor_coords = get_critical_points(coords)
+
+        # plt.imshow(img)
+        # plt.scatter(x.detach().numpy(), y.detach().numpy())
+        # plt.show()
+
+        data_point = [img, tensor_coords]
+        data.append(data_point)
+        if i >= max_data:
+            break
+
     return data
 
 
-def get_critical_points(json, key) -> Tuple[np.ndarray]:
+def get_critical_points(coords) -> torch.Tensor:
     x = []
     y = []
 
-    for pt in json[key]:
+    for pt in coords:
         x.append(float(pt[0]))
         y.append(float(pt[1]))
     
-    x = torch.tensor(x)
-    y = torch.tensor(y)
-    return torch.stack([x.mean() / config.WIDTH, y.mean() / config.HEIGHT])
+    x = torch.tensor(x) / config.WIDTH
+    y = torch.tensor(y) / config.HEIGHT
+    return torch.stack([x, y])
+
+def unnormalize(tensor: torch.Tensor, low, high) -> torch.Tensor:
+    std = (tensor - low) / (high - low)
+    scaled_tensor = std * (high - low) + low
+    return scaled_tensor
 
 class IMGDataset(Dataset):
 
-    def __init__(self, transform: torchvision.transforms.Compose=None):
-        self.data = load_data(transform)
+    def __init__(self, transform: torchvision.transforms.Compose=None, max_data=3000):
+        self.data = load_data(max_data, transform)
 
     def __len__(self):
         return len(self.data)
