@@ -3,9 +3,8 @@
 #include "Object.h"
 
 #include <iostream>
-#include <glm/glm.hpp>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 
 namespace Idn
@@ -14,15 +13,20 @@ namespace Idn
 	{
 	public:
 		SphereObject();
-		~SphereObject() {}
+		~SphereObject();
 
 		void Begin() override;
 		void Render() override;
 		void End() override;
+		void SetTexture() override;
 
 		float GetRadius() { return m_radius; }
 		void SetRadius(float r) { m_radius = r; }
-		void SetTexture() {}
+
+		inline void SetPosition(const glm::vec3& new_pos)
+		{
+			m_model = glm::translate(glm::mat4(0), new_pos);
+		}
 
 	private:
 		float m_radius = 200;

@@ -37,7 +37,7 @@ def load_data(max_data, transform=None):
         tensor_coords = get_critical_points(coords)
 
         # plt.imshow(img)
-        # plt.scatter(x.detach().numpy(), y.detach().numpy())
+        # plt.scatter(tensor_coords[0].detach().numpy() * config.WIDTH, tensor_coords[1].detach().numpy()* config.HEIGHT)
         # plt.show()
 
         data_point = [img, tensor_coords]

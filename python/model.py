@@ -2,7 +2,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import torch
-import time
 import numpy as np
 
 from matplotlib import pyplot as plt
@@ -16,7 +15,7 @@ import config
 
 
 # - Constants
-CHANNELS = 1
+CHANNELS = 3
 
 
 class Runner:
@@ -36,13 +35,14 @@ class Runner:
         transform: Compose=None,
         max_data: int=5000
     ):
+        self.model.train()
+
         self.epochs = epochs
         self.batch_size = batch_size
         self.lr = lr
         self.model = self.model.to(self.device)
         self.dataset = IMGDataset(transform, max_data=max_data)
 
-        self.model.train()
 
         optimizer = torch.optim.Adam(
             self.model.parameters(),
@@ -60,7 +60,7 @@ class Runner:
         
         try:
             print('[*] Beginning training...')
-            for step in (t := tqdm(range(1, self.epochs + 1))):
+            for _ in (t := tqdm(range(1, self.epochs + 1))):
                 optimizer.zero_grad(set_to_none=True)
 
                 # get the next batch from the loader
@@ -74,8 +74,9 @@ class Runner:
 
                 t.set_description(f"{loss}")
             self.model.save('HandDTTR.model')
-        except KeyboardInterrupt: pass
-        print('Saved!')
+        except KeyboardInterrupt:
+            self.model.save('HandDTTR.model')
+            print('Saved!')
     
     def predict(self, img: torch.Tensor):
         subject = img.to(self.device).unsqueeze(0)
@@ -95,12 +96,18 @@ class Runner:
         plt.show()
 
 
-class LogCoshLoss(nn.Module):
+class MeanNLoss(nn.Module):
+    def __init__(self): super().__init__()
 
+    def forward(self, prediction, real, n=4):
+        return torch.mean((prediction - real) ** n)
+
+
+class LogCoshLoss(nn.Module):
     def __init__(self): super().__init__()
 
     def forward(self, prediction, real):
-        return torch.mean(torch.log(torch.cosh(prediction - real)))
+        return torch.sum(torch.log(torch.cosh(prediction - real)))
 
 
 class HandDTTR(nn.Module):
@@ -109,17 +116,19 @@ class HandDTTR(nn.Module):
         super().__init__()
 
         self._featuremap = 64
-        self._kernel_size = 4
+        self._kernel_size = 3
         self.feature_extractor = nn.Sequential(
-            *self._conv_block(CHANNELS, self._featuremap * 2),
-            *self._conv_block(self._featuremap * 2, self._featuremap),
-            *self._conv_block(self._featuremap, 4),
+            *self._conv_block(CHANNELS, self._featuremap * 4),
+            *self._conv_block(self._featuremap * 4, self._featuremap * 2, reduction=False),
+            *self._conv_block(self._featuremap * 2, self._featuremap, reduction=False),
+            *self._conv_block(self._featuremap, 4, reduction=False),
         )
 
         self.regressor = nn.Sequential(
             FlattenExcludeBatchDim(),
-            nn.LazyLinear(128),
-            nn.Linear(128, 128),
+            nn.LazyLinear(512),
+            nn.Linear(512, 128),
+            nn.ReLU(inplace=True),
             nn.Linear(128, 2 * N_KEYPOINTS),
             nn.Sigmoid()
         )
@@ -138,13 +147,17 @@ class HandDTTR(nn.Module):
     def load(self, path: str):
         self.load_state_dict(torch.load(path))
     
-    def _conv_block(self, in_dim, out_dim):
-        return [
-            nn.Conv2d(in_dim, out_dim, self._kernel_size, bias=False),
+    def _conv_block(self, in_dim, out_dim, reduction=True):
+        layers = [
+            nn.Conv2d(in_dim, out_dim, self._kernel_size, bias=False, stride=3),
             nn.BatchNorm2d(out_dim),
-            nn.LeakyReLU(inplace=True),
-            nn.MaxPool2d(2, 2),
+            nn.LeakyReLU(0.1, inplace=True),
         ]
+
+        if reduction:
+            layers.append(nn.MaxPool2d(2, 2))
+        
+        return layers
 
 
 class FlattenExcludeBatchDim(nn.Module):

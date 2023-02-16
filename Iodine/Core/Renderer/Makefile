@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /Users/judedavis/OneDrive/Documents/Projects/iodine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/judedavis/OneDrive/Documents/Projects/iodine/build
+CMAKE_BINARY_DIR = /Users/judedavis/OneDrive/Documents/Projects/iodine
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/OneDrive/Documents/Projects/iodine/build/CMakeFiles /Users/judedavis/OneDrive/Documents/Projects/iodine/build/Iodine/Core/Renderer//CMakeFiles/progress.marks
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Renderer/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/OneDrive/Documents/Projects/iodine/build/CMakeFiles 0
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/OneDrive/Documents/Projects/iodine/CMakeFiles /Users/judedavis/OneDrive/Documents/Projects/iodine/Iodine/Core/Renderer//CMakeFiles/progress.marks
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Renderer/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/OneDrive/Documents/Projects/iodine/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Renderer/clean
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Renderer/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Renderer/preinstall
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Renderer/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Renderer/preinstall
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Renderer/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 Iodine/Core/Renderer/CMakeFiles/Renderer.dir/rule:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Renderer/CMakeFiles/Renderer.dir/rule
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Renderer/CMakeFiles/Renderer.dir/rule
 .PHONY : Iodine/Core/Renderer/CMakeFiles/Renderer.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ Renderer: Iodine/Core/Renderer/CMakeFiles/Renderer.dir/rule
 
 # fast build rule for target.
 Renderer/fast:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build
 .PHONY : Renderer/fast
 
 CubeObject.o: CubeObject.cc.o
@@ -135,7 +135,7 @@ CubeObject.o: CubeObject.cc.o
 
 # target to build an object file
 CubeObject.cc.o:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/CubeObject.cc.o
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/CubeObject.cc.o
 .PHONY : CubeObject.cc.o
 
 CubeObject.i: CubeObject.cc.i
@@ -143,7 +143,7 @@ CubeObject.i: CubeObject.cc.i
 
 # target to preprocess a source file
 CubeObject.cc.i:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/CubeObject.cc.i
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/CubeObject.cc.i
 .PHONY : CubeObject.cc.i
 
 CubeObject.s: CubeObject.cc.s
@@ -151,7 +151,7 @@ CubeObject.s: CubeObject.cc.s
 
 # target to generate assembly for a file
 CubeObject.cc.s:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/CubeObject.cc.s
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/CubeObject.cc.s
 .PHONY : CubeObject.cc.s
 
 Renderer.o: Renderer.cc.o
@@ -159,7 +159,7 @@ Renderer.o: Renderer.cc.o
 
 # target to build an object file
 Renderer.cc.o:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/Renderer.cc.o
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/Renderer.cc.o
 .PHONY : Renderer.cc.o
 
 Renderer.i: Renderer.cc.i
@@ -167,7 +167,7 @@ Renderer.i: Renderer.cc.i
 
 # target to preprocess a source file
 Renderer.cc.i:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/Renderer.cc.i
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/Renderer.cc.i
 .PHONY : Renderer.cc.i
 
 Renderer.s: Renderer.cc.s
@@ -175,7 +175,7 @@ Renderer.s: Renderer.cc.s
 
 # target to generate assembly for a file
 Renderer.cc.s:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/Renderer.cc.s
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/Renderer.cc.s
 .PHONY : Renderer.cc.s
 
 SphereObject.o: SphereObject.cc.o
@@ -183,7 +183,7 @@ SphereObject.o: SphereObject.cc.o
 
 # target to build an object file
 SphereObject.cc.o:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/SphereObject.cc.o
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/SphereObject.cc.o
 .PHONY : SphereObject.cc.o
 
 SphereObject.i: SphereObject.cc.i
@@ -191,7 +191,7 @@ SphereObject.i: SphereObject.cc.i
 
 # target to preprocess a source file
 SphereObject.cc.i:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/SphereObject.cc.i
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/SphereObject.cc.i
 .PHONY : SphereObject.cc.i
 
 SphereObject.s: SphereObject.cc.s
@@ -199,7 +199,7 @@ SphereObject.s: SphereObject.cc.s
 
 # target to generate assembly for a file
 SphereObject.cc.s:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/SphereObject.cc.s
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/SphereObject.cc.s
 .PHONY : SphereObject.cc.s
 
 __/Shaders/Shader.o: __/Shaders/Shader.cc.o
@@ -207,7 +207,7 @@ __/Shaders/Shader.o: __/Shaders/Shader.cc.o
 
 # target to build an object file
 __/Shaders/Shader.cc.o:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/__/Shaders/Shader.cc.o
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/__/Shaders/Shader.cc.o
 .PHONY : __/Shaders/Shader.cc.o
 
 __/Shaders/Shader.i: __/Shaders/Shader.cc.i
@@ -215,7 +215,7 @@ __/Shaders/Shader.i: __/Shaders/Shader.cc.i
 
 # target to preprocess a source file
 __/Shaders/Shader.cc.i:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/__/Shaders/Shader.cc.i
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/__/Shaders/Shader.cc.i
 .PHONY : __/Shaders/Shader.cc.i
 
 __/Shaders/Shader.s: __/Shaders/Shader.cc.s
@@ -223,7 +223,7 @@ __/Shaders/Shader.s: __/Shaders/Shader.cc.s
 
 # target to generate assembly for a file
 __/Shaders/Shader.cc.s:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/__/Shaders/Shader.cc.s
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(MAKE) $(MAKESILENT) -f Iodine/Core/Renderer/CMakeFiles/Renderer.dir/build.make Iodine/Core/Renderer/CMakeFiles/Renderer.dir/__/Shaders/Shader.cc.s
 .PHONY : __/Shaders/Shader.cc.s
 
 # Help Target
@@ -258,6 +258,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/judedavis/OneDrive/Documents/Projects/iodine && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

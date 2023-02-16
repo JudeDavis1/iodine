@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.8)
 file(GLOB RendererSources *.cc)
 file(GLOB RendererHeaders *.h)
 
-
+message("Adding ${RendererSources} ${RendererHeaders}")
 add_library(Renderer ${RendererSources} ${RendererHeaders} "../Shaders/Shader.h" "../Shaders/Shader.cc")
 
 

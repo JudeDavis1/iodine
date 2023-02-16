@@ -13,15 +13,8 @@ namespace Idn
 	{
 		m_shader = std::make_shared<Idn::Shader>("sphere.vs", "sphere.fs");
 	}
-
 	void SphereObject::Begin() {}
 	void SphereObject::End() {}
-
-
-	// void SphereObject::Render()
-	// {
-
-	// }
 
 	void SphereObject::Render()
 	{
@@ -43,6 +36,7 @@ namespace Idn
 
 		Idn::CreateTexture((unsigned char*)img_data, d, d, &txtr);
 		ImGui::Image((void*)(intptr_t)txtr, ImVec2(d, d));
+		delete img_data;
 	}
 
 	glm::vec4 SphereObject::m_PerPixel(glm::vec2 coords)
@@ -76,4 +70,7 @@ namespace Idn
 
 		return glm::vec4(sphereColor, 1.0f);
 	}
+
+	void SphereObject::SetTexture() {}
 }
+

@@ -5,7 +5,6 @@
 #include "Application.h"
 #include <Iodine/Core/Renderer/Camera.h>
 #include <Iodine/Core/Renderer/CubeObject.h>
-#include <Iodine/Core/Renderer/SphereObject.h>
 
 
 #include <chrono>

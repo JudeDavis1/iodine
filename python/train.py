@@ -6,16 +6,14 @@ from model import Runner
 
 
 
-LR = .00004
-EPOCHS = 50
-BATCH_SIZE = 32
+LR = 0.0006
+EPOCHS = 200
+BATCH_SIZE = 64
 MODEL_NAME = './HandDTTR.model'
 
 device = torch.device('mps')
 transform = transforms.Compose([
     transforms.ToTensor(),
-    transforms.Normalize((0), (1)),
-    transforms.Grayscale()
 ])
 
 def main():
@@ -33,7 +31,7 @@ def main():
         lr=LR,
         epochs=EPOCHS,
         transform=transform,
-        max_data=1000
+        max_data=5000
     )
 
 
