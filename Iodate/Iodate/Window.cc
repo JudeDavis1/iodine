@@ -70,7 +70,7 @@ void Window::Render()
 	ImGui::SetNextWindowBgAlpha(0);
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
-	ImGui::Begin("Hello", (bool*)1, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDecoration);
+	ImGui::Begin("Hello", (bool*)true, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDecoration);
 
 	if (ImGui::BeginMenuBar())
 	{
@@ -96,16 +96,14 @@ void Window::Render()
 	if (m_shouldRender) m_renderer->Render();
 
 	char buffer[10];
-	sprintf(buffer, "FPS: %i", m_fps);
+	snprintf(buffer, 10, "FPS: %i", m_fps);
 
 	ImGui::Text(buffer);
 	ImGui::End();
 	ImGui::Render();
-	
+
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
-
-
 
 void Window::End()
 {

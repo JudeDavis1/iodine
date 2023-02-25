@@ -11,7 +11,7 @@ namespace Idn
 {
 	enum MovementDirection
 	{
-		LEFT, RIGHT, FD, BD
+		LEFT=GLFW_KEY_A, RIGHT=GLFW_KEY_D, FD=GLFW_KEY_W, BD=GLFW_KEY_S
 	};
 
 	class Camera
@@ -21,11 +21,6 @@ namespace Idn
 		{
 			this->m_camera_pos = pos;
 		}
-
-		void Begin() {}
-		void End() {}
-		void Render() {}
-		void SetTexture() {}
 
 		void SetPosition(const glm::vec3& pos)
 		{
@@ -44,16 +39,16 @@ namespace Idn
 			float delta = 0.03;
 			switch (key)
 			{
-			case GLFW_KEY_W:
+			case MovementDirection::FD:
 				this->SetPosition(glm::vec3(m_camera_pos.x, m_camera_pos.y, m_camera_pos.z + delta));
 				break;
-			case GLFW_KEY_A:
+			case MovementDirection::LEFT:
 				this->SetPosition(glm::vec3(m_camera_pos.x + delta, m_camera_pos.y, m_camera_pos.z));
 				break;
-			case GLFW_KEY_S:
+			case MovementDirection::BD:
 				this->SetPosition(glm::vec3(m_camera_pos.x, m_camera_pos.y, m_camera_pos.z - delta));
 				break;
-			case GLFW_KEY_D:
+			case MovementDirection::RIGHT:
 				this->SetPosition(glm::vec3(m_camera_pos.x - delta, m_camera_pos.y, m_camera_pos.z));
 				break;
 			}
