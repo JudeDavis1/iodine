@@ -93,19 +93,15 @@ void Window::Render()
 		ImGui::EndMenuBar();
 	}
 
-	if (m_shouldRender)
-	{
-		m_renderer->Render();
-	}
+	if (m_shouldRender) m_renderer->Render();
 
 	char buffer[10];
 	sprintf(buffer, "FPS: %i", m_fps);
 
 	ImGui::Text(buffer);
-	
 	ImGui::End();
-
 	ImGui::Render();
+	
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
