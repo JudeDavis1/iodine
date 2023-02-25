@@ -6,6 +6,7 @@ import numpy as np
 
 from matplotlib import pyplot as plt
 from torch import nn
+from torch.nn import functional as F
 from tqdm import tqdm
 from torchvision.transforms import Compose
 from torch.utils.data.dataloader import DataLoader
@@ -26,6 +27,12 @@ class Runner:
     ):
         self.device = torch.device(device)
         self.model = HandDTTR()
+        self.params = {
+            'epochs': None,
+            'lr': None,
+            'mse': [],
+            'loss': []
+        }
     
     def fit(
         self,
@@ -35,6 +42,13 @@ class Runner:
         transform: Compose=None,
         max_data: int=5000
     ):
+        self.params.update({
+            'epochs': epochs,
+            'lr': lr,
+            # we do these later:
+            # - 'mse'
+            # - 'loss'
+        })
         self.model.train()
 
         self.epochs = epochs
@@ -43,11 +57,9 @@ class Runner:
         self.model = self.model.to(self.device)
         self.dataset = IMGDataset(transform, max_data=max_data)
 
-
-        optimizer = torch.optim.Adam(
+        optimizer = torch.optim.AdamW(
             self.model.parameters(),
-            self.lr,
-            betas=(0.99, 0.999)
+            self.lr
         )
         criterion = LogCoshLoss()
 
@@ -65,14 +77,18 @@ class Runner:
 
                 # get the next batch from the loader
                 img, y = next(iter(loader))
-                y = y.flatten()
-                output: torch.Tensor = self.model(img.to(self.device)).float()
-                loss: torch.Tensor = criterion(output.flatten(), y.to(self.device).float())
+                y = y.float().flatten().to(self.device)
+                output: torch.Tensor = self.model(img.to(self.device)).float().flatten()
+                loss: torch.Tensor = criterion(output, y)
 
                 loss.backward()
                 optimizer.step()
 
-                t.set_description(f"{loss}")
+                mse = F.mse_loss(output, y)
+                t.set_description(f"Training Loss: {loss:.5f}  MSE: {mse:.5f}")
+
+                self.params['mse'].append(mse.cpu().detach().numpy())
+                self.params['loss'].append(loss.cpu().detach().numpy())
             self.model.save('HandDTTR.model')
         except KeyboardInterrupt:
             self.model.save('HandDTTR.model')
@@ -85,6 +101,14 @@ class Runner:
         x_norm, y_norm = np.array_split(output.flatten(), 2)
         return (x_norm * config.WIDTH, y_norm * config.HEIGHT)
     
+    def plot_train_data(self):
+        epoch_range = list(range(self.params['epochs']))
+        plt.plot(epoch_range, self.params['loss'])
+        plt.plot(epoch_range, self.params['mse'])
+        plt.legend(["loss", "MSE"], loc='lower right')
+
+        plt.show()
+    
     def evaluate(self, img):
         subject = img.to(self.device).unsqueeze(0)
         reg_img = subject[0].cpu().numpy().transpose(1, 2, 0)
@@ -96,18 +120,19 @@ class Runner:
         plt.show()
 
 
-class MeanNLoss(nn.Module):
-    def __init__(self): super().__init__()
-
-    def forward(self, prediction, real, n=4):
-        return torch.mean((prediction - real) ** n)
-
-
 class LogCoshLoss(nn.Module):
-    def __init__(self): super().__init__()
+    def __init__(self, reduction='mean'):
+        super().__init__()
+        self.reduction = reduction
 
     def forward(self, prediction, real):
-        return torch.sum(torch.log(torch.cosh(prediction - real)))
+        loss = torch.log(torch.cosh(prediction - real))
+        if self.reduction == 'mean':
+            return torch.mean(loss)
+        elif self.reduction == 'sum':
+            return torch.sum(loss)
+        else:
+            raise ValueError('`reduction` must be sum or mean')
 
 
 class HandDTTR(nn.Module):
@@ -117,27 +142,37 @@ class HandDTTR(nn.Module):
 
         self._featuremap = 64
         self._kernel_size = 3
+        self.out_features = 2 * N_KEYPOINTS
+        self.bottleneck_input_size = 128
+        self.mh_attn = nn.MultiheadAttention(self.bottleneck_input_size, 8)
         self.feature_extractor = nn.Sequential(
             *self._conv_block(CHANNELS, self._featuremap * 4),
             *self._conv_block(self._featuremap * 4, self._featuremap * 2, reduction=False),
             *self._conv_block(self._featuremap * 2, self._featuremap, reduction=False),
-            *self._conv_block(self._featuremap, 4, reduction=False),
+            *self._conv_block(self._featuremap, self.out_features, reduction=False),
         )
-
+        self.bottleneck = nn.LazyLinear(self.bottleneck_input_size)
+        self.key = nn.Linear(self.bottleneck_input_size, self.bottleneck_input_size)
+        self.query = nn.Linear(self.bottleneck_input_size, self.bottleneck_input_size)
+        self.value = nn.Linear(self.bottleneck_input_size, self.bottleneck_input_size)
         self.regressor = nn.Sequential(
-            FlattenExcludeBatchDim(),
-            nn.LazyLinear(512),
-            nn.Linear(512, 128),
-            nn.ReLU(inplace=True),
-            nn.Linear(128, 2 * N_KEYPOINTS),
-            nn.Sigmoid()
+            nn.Linear(self.bottleneck_input_size, self.bottleneck_input_size * 2),
+            nn.Linear(self.bottleneck_input_size * 2, self.out_features),
+            nn.Sigmoid(),
         )
 
         self.dropout = nn.Dropout(0.01)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        features = self.feature_extractor(x)
-        logits = self.dropout(self.regressor(features))
+        features = torch.flatten(self.feature_extractor(x), 1)
+        bottleneck_output = self.bottleneck(features)
+
+        query = self.query(bottleneck_output)
+        key = self.key(bottleneck_output)
+        value = self.value(bottleneck_output)
+
+        features, _ = self.mh_attn(query, key, value)
+        logits = self.regressor(features)
 
         return logits
 
@@ -149,21 +184,13 @@ class HandDTTR(nn.Module):
     
     def _conv_block(self, in_dim, out_dim, reduction=True):
         layers = [
-            nn.Conv2d(in_dim, out_dim, self._kernel_size, bias=False, stride=3),
+            nn.Conv2d(in_dim, out_dim, self._kernel_size, stride=3),
             nn.BatchNorm2d(out_dim),
-            nn.LeakyReLU(0.1, inplace=True),
+            nn.ReLU(inplace=True),
         ]
 
         if reduction:
-            layers.append(nn.MaxPool2d(2, 2))
+            layers.insert(1, nn.MaxPool2d(2, 2))
         
         return layers
 
-
-class FlattenExcludeBatchDim(nn.Module):
-
-    def __init__(self):
-        super().__init__()
-
-    def forward(self, x):
-        return torch.flatten(x, 1)

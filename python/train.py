@@ -6,9 +6,9 @@ from model import Runner
 
 
 
-LR = 0.0006
+LR = 0.0008
 EPOCHS = 200
-BATCH_SIZE = 64
+BATCH_SIZE = 128
 MODEL_NAME = './HandDTTR.model'
 
 device = torch.device('mps')
@@ -31,8 +31,9 @@ def main():
         lr=LR,
         epochs=EPOCHS,
         transform=transform,
-        max_data=5000
+        max_data=10000
     )
+    trainer.plot_train_data()
 
 
 

@@ -1,32 +1,7 @@
 Detecting compiler hash for triplet arm64-osx...
-The following packages will be built and installed:
-  * egl-registry[core]:arm64-osx -> 2022-09-20
-    glad[core,loader]:arm64-osx -> 0.1.36
-    glfw3[core]:arm64-osx -> 3.3.8#2
-    glm[core]:arm64-osx -> 0.9.9.8#2
-    imgui[core,glfw-binding,opengl3-binding]:arm64-osx -> 1.89.2
-  * opengl-registry[core]:arm64-osx -> 2022-09-29
-  * vcpkg-cmake[core]:arm64-osx -> 2022-12-22
-  * vcpkg-cmake-config[core]:arm64-osx -> 2022-02-06#1
-Additional packages (*) will be modified to complete this operation.
-Restored 8 package(s) from /Users/judedavis/.cache/vcpkg/archives in 112.2 ms. Use --debug to see more details.
-Installing 1/8 vcpkg-cmake-config:arm64-osx...
-Elapsed time to handle vcpkg-cmake-config:arm64-osx: 2.127 ms
-Installing 2/8 vcpkg-cmake:arm64-osx...
-Elapsed time to handle vcpkg-cmake:arm64-osx: 2.012 ms
-Installing 3/8 egl-registry:arm64-osx...
-Elapsed time to handle egl-registry:arm64-osx: 3.746 ms
-Installing 4/8 opengl-registry:arm64-osx...
-Elapsed time to handle opengl-registry:arm64-osx: 8.68 ms
-Installing 5/8 glad:arm64-osx...
-Elapsed time to handle glad:arm64-osx: 3.723 ms
-Installing 6/8 glfw3:arm64-osx...
-Elapsed time to handle glfw3:arm64-osx: 4.183 ms
-Installing 7/8 glm:arm64-osx...
-Elapsed time to handle glm:arm64-osx: 122.5 ms
-Installing 8/8 imgui:arm64-osx...
-Elapsed time to handle imgui:arm64-osx: 11.45 ms
-Total install time: 270.8 ms
+All requested packages are currently installed.
+Restored 0 package(s) from /Users/judedavis/.cache/vcpkg/archives in 1.042 us. Use --debug to see more details.
+Total install time: 7.083 us
 glad provides CMake targets:
 
     # this is heuristically generated, and may not be correct

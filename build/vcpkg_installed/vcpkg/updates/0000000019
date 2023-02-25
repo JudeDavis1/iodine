@@ -1,9 +1,0 @@
-Package: imgui
-Version: 1.89.2
-Depends: vcpkg-cmake, vcpkg-cmake-config
-Architecture: arm64-osx
-Multi-Arch: same
-Abi: 8e848a508f802ae9ddbd04b4d777a71e507386f3da57df7261bd09ef843c1f33
-Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
-Type: Port
-Status: install ok installed

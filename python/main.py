@@ -29,11 +29,10 @@ def run():
         x_coords, y_coords = runner.predict(input_tensor)
         x_coords, y_coords = x_coords.astype(int), y_coords.astype(int)
         image = og_frame.copy()
-        for i in range(N_KEYPOINTS):
-            image = cv2.circle(image, (x_coords[i], y_coords[i]), radius=4, thickness=2, color=(65, 10, 10))
+        for j in range(N_KEYPOINTS):
+            image = cv2.circle(image, (x_coords[j], y_coords[j]), radius=4, thickness=-1, color=(65, 10, 10))
         
         image = cv2.flip(image, 1)
-        
         cv2.imshow('winname', image)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
