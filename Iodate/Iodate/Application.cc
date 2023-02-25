@@ -38,10 +38,18 @@ void Application::Run()
 
 	int fps = 0;
 	int curFrames = 0;
+	float deltaTime = 0;
+	float lastFrame = 0;
 	std::chrono::time_point timer = std::chrono::system_clock::now();
 
 	while (!glfwWindowShouldClose(m_window->gl_window))
 	{
+		// Set frame time
+        GLfloat currentFrame = glfwGetTime( );
+        deltaTime = currentFrame - lastFrame;
+		m_window->GetRenderer()->camera.SetDeltaTime(deltaTime);
+		
+        lastFrame = currentFrame;
 		std::chrono::duration<double> elapsed = std::chrono::system_clock::now() - timer;
 
 		if (elapsed.count() >= 1)

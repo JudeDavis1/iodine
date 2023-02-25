@@ -7,6 +7,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 
+const GLfloat YAW        = -90.0f;
+const GLfloat PITCH      =  0.0f;
+const GLfloat SPEED      =  6.0f;
+const GLfloat SENSITIVTY =  0.25f;
+const GLfloat ZOOM       =  45.0f;
+
 namespace Idn
 {
 	enum MovementDirection
@@ -33,23 +39,26 @@ namespace Idn
 			return this->m_view_mat;
 		}
 
+		void SetDeltaTime(float delta) { this->deltaTime = delta; }
+
 		const void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 		{
 			// The amount to move
-			float delta = 0.03;
+			float velocity = 10;
+			float deltaPosition = velocity * this->deltaTime;
 			switch (key)
 			{
 			case MovementDirection::FD:
-				this->SetPosition(glm::vec3(m_camera_pos.x, m_camera_pos.y, m_camera_pos.z + delta));
+				this->SetPosition(glm::vec3(m_camera_pos.x, m_camera_pos.y, m_camera_pos.z + deltaPosition));
 				break;
 			case MovementDirection::LEFT:
-				this->SetPosition(glm::vec3(m_camera_pos.x + delta, m_camera_pos.y, m_camera_pos.z));
+				this->SetPosition(glm::vec3(m_camera_pos.x + deltaPosition, m_camera_pos.y, m_camera_pos.z));
 				break;
 			case MovementDirection::BD:
-				this->SetPosition(glm::vec3(m_camera_pos.x, m_camera_pos.y, m_camera_pos.z - delta));
+				this->SetPosition(glm::vec3(m_camera_pos.x, m_camera_pos.y, m_camera_pos.z - deltaPosition));
 				break;
 			case MovementDirection::RIGHT:
-				this->SetPosition(glm::vec3(m_camera_pos.x - delta, m_camera_pos.y, m_camera_pos.z));
+				this->SetPosition(glm::vec3(m_camera_pos.x - deltaPosition, m_camera_pos.y, m_camera_pos.z));
 				break;
 			}
 		}
@@ -57,6 +66,7 @@ namespace Idn
 	private:
 		glm::mat4 m_view_mat;
 		glm::vec3 m_camera_pos;
+		float deltaTime = 0;
 	};
 
 };
