@@ -46,6 +46,7 @@ namespace Idn
 			// The amount to move
 			float velocity = 10;
 			float deltaPosition = velocity * this->deltaTime;
+			
 			switch (key)
 			{
 			case MovementDirection::FD:

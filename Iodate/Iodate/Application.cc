@@ -45,7 +45,7 @@ void Application::Run()
 	while (!glfwWindowShouldClose(m_window->gl_window))
 	{
 		// Set frame time
-        GLfloat currentFrame = glfwGetTime( );
+        GLfloat currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
 		m_window->GetRenderer()->camera.SetDeltaTime(deltaTime);
 		
