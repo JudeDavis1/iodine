@@ -14,8 +14,7 @@
 #include <Core/Renderer/Renderer.h>
 
 
-class Window
-{
+class Window {
 public:
 	GLFWwindow* gl_window;
 	

@@ -3,8 +3,7 @@
 #include <iostream>
 #include <random>
 
-namespace Idn
-{
+namespace Idn {
 	
 	// Random Integer
 	int rndNi(int low, int high);

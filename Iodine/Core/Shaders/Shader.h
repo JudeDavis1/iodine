@@ -19,7 +19,8 @@ namespace Idn
 		void Use();
 	private:
 		GLuint m_program;
-		std::string m_vtxSrc, m_fragSrc;
+		std::string m_vtx_src, m_frag_src;
+		std::string m_vtx_name, m_frag_name;
 	};
 
 

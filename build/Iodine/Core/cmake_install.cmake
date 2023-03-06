@@ -1,4 +1,4 @@
-# Install script for directory: /Users/judedavis/OneDrive/Documents/Projects/iodine/Iodine/Core
+# Install script for directory: /Users/judedavis/local/iodine/Iodine/Core
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,10 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/judedavis/OneDrive/Documents/Projects/iodine/build/Iodine/Core/Shaders/cmake_install.cmake")
-  include("/Users/judedavis/OneDrive/Documents/Projects/iodine/build/Iodine/Core/Renderer/cmake_install.cmake")
-  include("/Users/judedavis/OneDrive/Documents/Projects/iodine/build/Iodine/Core/GraphicsAPI/cmake_install.cmake")
+  include("/Users/judedavis/local/iodine/build/Iodine/Core/Shaders/cmake_install.cmake")
+  include("/Users/judedavis/local/iodine/build/Iodine/Core/Renderer/cmake_install.cmake")
+  include("/Users/judedavis/local/iodine/build/Iodine/Core/GraphicsAPI/cmake_install.cmake")
+  include("/Users/judedavis/local/iodine/build/Iodine/Core/Engine/cmake_install.cmake")
 
 endif()
 

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/judedavis/OneDrive/Documents/Projects/iodine
+# Install script for directory: /Users/judedavis/local/iodine
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/judedavis/OneDrive/Documents/Projects/iodine/build/Iodine/cmake_install.cmake")
-  include("/Users/judedavis/OneDrive/Documents/Projects/iodine/build/Iodate/cmake_install.cmake")
+  include("/Users/judedavis/local/iodine/build/Iodine/cmake_install.cmake")
+  include("/Users/judedavis/local/iodine/build/Iodate/cmake_install.cmake")
 
 endif()
 
@@ -52,5 +52,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/judedavis/OneDrive/Documents/Projects/iodine/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/judedavis/local/iodine/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

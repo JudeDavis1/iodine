@@ -1,4 +1,4 @@
-# Install script for directory: /Users/judedavis/OneDrive/Documents/Projects/iodine/Iodine/Core/GraphicsAPI
+# Install script for directory: /Users/judedavis/local/iodine/Iodine/Core/GraphicsAPI
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

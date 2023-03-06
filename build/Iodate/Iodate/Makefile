@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.25.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/judedavis/OneDrive/Documents/Projects/iodine
+CMAKE_SOURCE_DIR = /Users/judedavis/local/iodine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/judedavis/OneDrive/Documents/Projects/iodine/build
+CMAKE_BINARY_DIR = /Users/judedavis/local/iodine/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/OneDrive/Documents/Projects/iodine/build/CMakeFiles /Users/judedavis/OneDrive/Documents/Projects/iodine/build/Iodate/Iodate//CMakeFiles/progress.marks
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodate/Iodate/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/OneDrive/Documents/Projects/iodine/build/CMakeFiles 0
+	cd /Users/judedavis/local/iodine/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/local/iodine/build/CMakeFiles /Users/judedavis/local/iodine/build/Iodate/Iodate//CMakeFiles/progress.marks
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodate/Iodate/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/local/iodine/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodate/Iodate/clean
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodate/Iodate/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodate/Iodate/preinstall
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodate/Iodate/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodate/Iodate/preinstall
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodate/Iodate/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/judedavis/local/iodine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 Iodate/Iodate/CMakeFiles/Iodate.dir/rule:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodate/Iodate/CMakeFiles/Iodate.dir/rule
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodate/Iodate/CMakeFiles/Iodate.dir/rule
 .PHONY : Iodate/Iodate/CMakeFiles/Iodate.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ Iodate: Iodate/Iodate/CMakeFiles/Iodate.dir/rule
 
 # fast build rule for target.
 Iodate/fast:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/build
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/build
 .PHONY : Iodate/fast
 
 Application.o: Application.cc.o
@@ -135,7 +135,7 @@ Application.o: Application.cc.o
 
 # target to build an object file
 Application.cc.o:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Application.cc.o
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Application.cc.o
 .PHONY : Application.cc.o
 
 Application.i: Application.cc.i
@@ -143,7 +143,7 @@ Application.i: Application.cc.i
 
 # target to preprocess a source file
 Application.cc.i:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Application.cc.i
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Application.cc.i
 .PHONY : Application.cc.i
 
 Application.s: Application.cc.s
@@ -151,7 +151,7 @@ Application.s: Application.cc.s
 
 # target to generate assembly for a file
 Application.cc.s:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Application.cc.s
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Application.cc.s
 .PHONY : Application.cc.s
 
 Main.o: Main.cc.o
@@ -159,7 +159,7 @@ Main.o: Main.cc.o
 
 # target to build an object file
 Main.cc.o:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Main.cc.o
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Main.cc.o
 .PHONY : Main.cc.o
 
 Main.i: Main.cc.i
@@ -167,7 +167,7 @@ Main.i: Main.cc.i
 
 # target to preprocess a source file
 Main.cc.i:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Main.cc.i
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Main.cc.i
 .PHONY : Main.cc.i
 
 Main.s: Main.cc.s
@@ -175,7 +175,7 @@ Main.s: Main.cc.s
 
 # target to generate assembly for a file
 Main.cc.s:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Main.cc.s
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Main.cc.s
 .PHONY : Main.cc.s
 
 Window.o: Window.cc.o
@@ -183,7 +183,7 @@ Window.o: Window.cc.o
 
 # target to build an object file
 Window.cc.o:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Window.cc.o
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Window.cc.o
 .PHONY : Window.cc.o
 
 Window.i: Window.cc.i
@@ -191,7 +191,7 @@ Window.i: Window.cc.i
 
 # target to preprocess a source file
 Window.cc.i:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Window.cc.i
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Window.cc.i
 .PHONY : Window.cc.i
 
 Window.s: Window.cc.s
@@ -199,7 +199,7 @@ Window.s: Window.cc.s
 
 # target to generate assembly for a file
 Window.cc.s:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Window.cc.s
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodate/Iodate/CMakeFiles/Iodate.dir/build.make Iodate/Iodate/CMakeFiles/Iodate.dir/Window.cc.s
 .PHONY : Window.cc.s
 
 # Help Target
@@ -231,6 +231,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/judedavis/local/iodine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

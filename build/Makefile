@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.25.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/judedavis/OneDrive/Documents/Projects/iodine
+CMAKE_SOURCE_DIR = /Users/judedavis/local/iodine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/judedavis/OneDrive/Documents/Projects/iodine/build
+CMAKE_BINARY_DIR = /Users/judedavis/local/iodine/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/OneDrive/Documents/Projects/iodine/build/CMakeFiles /Users/judedavis/OneDrive/Documents/Projects/iodine/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/local/iodine/build/CMakeFiles /Users/judedavis/local/iodine/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/OneDrive/Documents/Projects/iodine/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/local/iodine/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -156,6 +156,19 @@ API/fast:
 .PHONY : API/fast
 
 #=============================================================================
+# Target rules for targets named Engine
+
+# Build rule for target.
+Engine: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Engine
+.PHONY : Engine
+
+# fast build rule for target.
+Engine/fast:
+	$(MAKE) $(MAKESILENT) -f Iodine/Core/Engine/CMakeFiles/Engine.dir/build.make Iodine/Core/Engine/CMakeFiles/Engine.dir/build
+.PHONY : Engine/fast
+
+#=============================================================================
 # Target rules for targets named Iodate
 
 # Build rule for target.
@@ -177,6 +190,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... API"
+	@echo "... Engine"
 	@echo "... Iodate"
 	@echo "... Renderer"
 	@echo "... Shaders"

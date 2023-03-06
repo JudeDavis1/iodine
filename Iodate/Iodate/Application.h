@@ -13,8 +13,7 @@
 #include "Window.h"
 
 
-class Application
-{
+class Application {
 public:
 	// Run the application loop
 	void Run();

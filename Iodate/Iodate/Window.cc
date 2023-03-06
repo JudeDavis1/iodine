@@ -11,8 +11,7 @@
 /// - Abstract sphere to class which inherits from ObjectBase
 
 
-Window::Window(const char* title, uint32_t width, uint32_t height)
-{
+Window::Window(const char* title, uint32_t width, uint32_t height) {
 	m_title = title;
 	m_width = width;
 	m_height = height;
@@ -48,8 +47,7 @@ Window::Window(const char* title, uint32_t width, uint32_t height)
 	glClearColor(0.7, 0.8, 1, 1);
 }
 
-void Window::Begin()
-{
+void Window::Begin() {
 	// Update width, height pointers in each object
 	for (auto object : m_renderer->GetObjects())
 	{
@@ -59,14 +57,12 @@ void Window::Begin()
 	m_renderer->Begin();
 }
 
-void Window::NewFrame()
-{
+void Window::NewFrame() {
 	m_renderer->NewFrame();
 }
 
 // Render ImGui onto the screen
-void Window::Render()
-{
+void Window::Render() {
 	ImGui::SetNextWindowBgAlpha(0);
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
@@ -105,19 +101,16 @@ void Window::Render()
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void Window::End()
-{
+void Window::End() {
 	m_renderer->End();
 }
 
-void Window::SetFPS(int fps)
-{
+void Window::SetFPS(int fps) {
 	this->m_fps = fps;
 }
 
 
-Window::~Window()
-{
+Window::~Window() {
 	glfwDestroyWindow(gl_window);
 	glfwTerminate();
 }

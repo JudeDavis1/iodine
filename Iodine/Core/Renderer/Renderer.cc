@@ -7,13 +7,11 @@
 
 
 
-Renderer::Renderer(GLFWwindow* window)
-{
+Renderer::Renderer(GLFWwindow* window) {
 	assert(window != nullptr);
 }
 
-void Renderer::Begin()
-{
+void Renderer::Begin() {
 	// Begin other objects
 	for (auto object : m_objects) object->Begin();
 
@@ -22,29 +20,24 @@ void Renderer::Begin()
 	camera.SetPosition(default_camera_pos);
 }
 
-void Renderer::NewFrame()
-{
+void Renderer::NewFrame() {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 }
 
-void Renderer::Render()
-{
-	for (auto object : m_objects)
-	{
+void Renderer::Render() {
+	for (auto object : m_objects) {
 		object->SetCameraPos(this->camera.GetPosition());
 		object->Render();
 	}
 }
 
-void Renderer::End()
-{
+void Renderer::End() {
 	for (auto object : m_objects) object->End();
 }
 
-Renderer::~Renderer()
-{
+Renderer::~Renderer() {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();

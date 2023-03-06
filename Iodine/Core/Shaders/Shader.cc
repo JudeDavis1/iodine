@@ -9,6 +9,9 @@ namespace Idn
 {
 	Shader::Shader(std::string vtx_path, std::string frag_path)
 	{
+		this->m_vtx_name = vtx_path;
+		this->m_frag_name = frag_path;
+
 		std::ifstream vtx_file, frag_file;
 		std::stringstream vtx_stream, frag_stream;
 
@@ -24,8 +27,8 @@ namespace Idn
 			// Store file contents in string streams
 
 			// Copy the stream strings to string member vars
-			m_vtxSrc = std::string((std::istreambuf_iterator<char>(vtx_file)), (std::istreambuf_iterator<char>()));
-			m_fragSrc = std::string((std::istreambuf_iterator<char>(frag_file)), (std::istreambuf_iterator<char>()));
+			m_vtx_src = std::string((std::istreambuf_iterator<char>(vtx_file)), (std::istreambuf_iterator<char>()));
+			m_frag_src = std::string((std::istreambuf_iterator<char>(frag_file)), (std::istreambuf_iterator<char>()));
 		}
 		catch (std::ifstream::failure e)
 		{
@@ -35,8 +38,8 @@ namespace Idn
 
 	bool Shader::Compile()
 	{
-		const char* vs_cstr = m_vtxSrc.c_str();
-		const char* fs_cstr = m_fragSrc.c_str();
+		const char* vs_cstr = m_vtx_src.c_str();
+		const char* fs_cstr = m_frag_src.c_str();
 
 		GLint success;
 		GLuint vs, fs;
@@ -51,7 +54,7 @@ namespace Idn
 		if (!success)
 		{
 			glGetShaderInfoLog(vs, 512, NULL, info_log);
-			std::cout << "Vertex shader compilation failed: " << info_log << std::endl;
+			std::cout << "Vertex shader compilation failed for " << this->m_vtx_name << ": " << info_log << std::endl;
 		}
 
 		// Create and compile fragment shader
@@ -63,7 +66,7 @@ namespace Idn
 		if (!success)
 		{
 			glGetShaderInfoLog(fs, 512, NULL, info_log);
-			std::cout << "Fragment shader compilation failed: " << info_log << std::endl;
+			std::cout << "Fragment shader compilation failed for " << this->m_frag_name << ": " << info_log << std::endl;
 		}
 
 		// Initialize a program from vertex and fragment shader

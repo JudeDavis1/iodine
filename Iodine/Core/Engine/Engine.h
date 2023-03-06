@@ -1,11 +1,16 @@
-#include <pybind11/pybind11.h>
-#include <opencv2/opencv.hpp>
+#include <iostream>
 
 
-namespace Idn
-{
-class Engine
-{
+namespace Idn {
+
+
+class Engine {
+public:
+    Engine();
+    void Run();
+    ~Engine();
 };
+
+
 
 }

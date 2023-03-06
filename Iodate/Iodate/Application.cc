@@ -10,8 +10,7 @@
 #include <chrono>
 
 
-Application::Application(const char* title, uint32_t width, uint32_t height)
-{
+Application::Application(const char* title, uint32_t width, uint32_t height) {
 	// Setup window
 	m_window = new Window(title, width, height);
 
@@ -32,8 +31,7 @@ Application::Application(const char* title, uint32_t width, uint32_t height)
 }
 
 
-void Application::Run()
-{
+void Application::Run() {
 	m_window->Begin();
 
 	int fps = 0;
@@ -98,8 +96,7 @@ void Application::Run()
 }
 
 
-Application::~Application()
-{
+Application::~Application() {
 	delete m_window;
 }
 

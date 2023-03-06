@@ -102,3 +102,345 @@ Description: Make available OpenGL3/ES/ES2 (modern) binding
 Type: Port
 Status: install ok installed
 
+Package: libwebp
+Version: 1.3.0
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: cb3bdc09a88fb1aa2ac4fa320030d5d24e38a6ef8ea9f2ad7094390f81c85885
+Description: WebP codec: library to encode and decode images in WebP format
+Type: Port
+Default-Features: libwebpmux, nearlossless, simd
+Status: install ok installed
+
+Package: libwebp
+Feature: libwebpmux
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Build the libwebpmux library
+Type: Port
+Status: install ok installed
+
+Package: libwebp
+Feature: nearlossless
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Enable near-lossless encoding
+Type: Port
+Status: install ok installed
+
+Package: libwebp
+Feature: simd
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Enable any SIMD optimization.
+Type: Port
+Status: install ok installed
+
+Package: zlib
+Version: 1.2.13
+Depends: vcpkg-cmake
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: fd02a0749bfac2de6036a433b19e17af9345f4ac5fcb7520b7aebb901a99953b
+Description: A compression library
+Type: Port
+Status: install ok installed
+
+Package: liblzma
+Version: 5.4.1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 02ffa0065b3fbfa1036a322a51603f262cfca37e15dc3f370f8e49ee799df8e3
+Description: Compression library with an API similar to that of zlib.
+Type: Port
+Status: install ok installed
+
+Package: libjpeg-turbo
+Version: 2.1.5
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 3958e34e1ad40b990c0c52d86e1b81d1f585faab4531b5e423d1708ed181f716
+Description: libjpeg-turbo is a JPEG image codec that uses SIMD instructions (MMX, SSE2, NEON, AltiVec) to accelerate baseline JPEG compression and decompression on x86, x86-64, ARM, and PowerPC systems.
+Type: Port
+Status: install ok installed
+
+Package: tiff
+Version: 4.5.0
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: d67eb8c4f13f817116f5797097b69e4ab27bf14c05f662489040c770127b3c7f
+Description: A library that supports the manipulation of TIFF image files
+Type: Port
+Default-Features: jpeg, lzma, zip
+Status: install ok installed
+
+Package: tiff
+Feature: jpeg
+Depends: libjpeg-turbo
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Support JPEG compression in TIFF image files
+Type: Port
+Status: install ok installed
+
+Package: tiff
+Feature: lzma
+Depends: liblzma
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Support LZMA compression in TIFF image files
+Type: Port
+Status: install ok installed
+
+Package: tiff
+Feature: zip
+Depends: zlib
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Support ZIP/deflate compression in TIFF image files
+Type: Port
+Status: install ok installed
+
+Package: quirc
+Version: 1.1
+Port-Version: 3
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 5a4f85bd64ce73a88dea154e2832c85226d93ace6df0388aaab1656deaccc142
+Description: quirc is one of the C library available for scanning QR Codes
+Type: Port
+Status: install ok installed
+
+Package: libpng
+Version: 1.6.39
+Depends: vcpkg-cmake, vcpkg-cmake-config, zlib
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 8c3067c0af870c8ca947d82958551f33fada5e0c8261dc293ba7266b0b740b21
+Description: libpng is a library implementing an interface for reading and writing PNG (Portable Network Graphics) format files
+Type: Port
+Status: install ok installed
+
+Package: protobuf
+Version: 3.21.12
+Depends: protobuf, vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 6005c0ae94af40a9b4da7c64b1eab2ee8ea566f5d2538e3c00e401138d2da61b
+Description: Protocol Buffers - Google's data interchange format
+Type: Port
+Status: install ok installed
+
+Package: vcpkg-get-python-packages
+Version: 2022-06-30
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 955f5a0167d54cbb0879676221a37f6eb6e7e6344649e55826131d92e2a5b6f2
+Type: Port
+Status: install ok installed
+
+Package: opencv4
+Version: 4.7.0
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config, vcpkg-get-python-packages, zlib
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 104ee6a222516604a94c92b4fe9bccae18f6696db2c8490917db92f9177b6266
+Description: computer vision library
+Type: Port
+Default-Features: default-features
+Status: install ok installed
+
+Package: opencv4
+Feature: default-features
+Depends: opencv4
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Platform-dependent default features
+Type: Port
+Status: install ok installed
+
+Package: opencv4
+Feature: dnn
+Depends: protobuf
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Enable dnn module
+Type: Port
+Status: install ok installed
+
+Package: opencv4
+Feature: jpeg
+Depends: libjpeg-turbo
+Architecture: arm64-osx
+Multi-Arch: same
+Description: JPEG support for opencv
+Type: Port
+Status: install ok installed
+
+Package: opencv4
+Feature: png
+Depends: libpng
+Architecture: arm64-osx
+Multi-Arch: same
+Description: PNG support for opencv
+Type: Port
+Status: install ok installed
+
+Package: opencv4
+Feature: quirc
+Depends: quirc
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Enable QR code module
+Type: Port
+Status: install ok installed
+
+Package: opencv4
+Feature: tiff
+Depends: tiff
+Architecture: arm64-osx
+Multi-Arch: same
+Description: TIFF support for opencv
+Type: Port
+Status: install ok installed
+
+Package: opencv4
+Feature: webp
+Depends: libwebp
+Architecture: arm64-osx
+Multi-Arch: same
+Description: WebP support for opencv
+Type: Port
+Status: install ok installed
+
+Package: opencv
+Version: 4.7.0
+Depends: opencv4
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 47d6acb9e86f585dc7ff4cbad8b99ae7fbe28677573643e6b61cf041d630c1ac
+Description: Computer vision library
+Type: Port
+Default-Features: default-features
+Status: install ok installed
+
+Package: opencv
+Feature: default-features
+Depends: opencv4
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Platform-dependent default features
+Type: Port
+Status: install ok installed
+
+Package: sqlite3
+Version: 3.40.1
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 1e3affb54d8864322d9514ace07f9af07feff74a05f4a99b197be3246bc852a3
+Description: SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine.
+Type: Port
+Status: install ok installed
+
+Package: openssl
+Version: 3.0.7
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 27742e33bd33a41bf297aeb71034e7c2b66b6d77566ed7cc4859be1fd40f07f7
+Description: OpenSSL is an open source project that provides a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols. It is also a general-purpose cryptography library.
+Type: Port
+Status: install ok installed
+
+Package: libiconv
+Version: 1.17
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: f48a096cba69ab77f1f13e367b4aa390e9518a9f5fb797069958845993042971
+Description: GNU Unicode text conversion
+Type: Port
+Status: install ok installed
+
+Package: libffi
+Version: 3.4.4
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 75816eb5835cb45dea4e6bc2844e41598afdb97bfe76d41eabe1135b2925dc29
+Description: Portable, high level programming interface to various calling conventions
+Type: Port
+Status: install ok installed
+
+Package: gettext
+Version: 0.21.1
+Depends: libiconv
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: c4fa30fdb94e69c5df8f3af08eca6f7b0e250e05733a04b1b61ad695494c17bd
+Description: GNU gettext provides libintl and a set of tools to help produce multi-lingual messages.
+Type: Port
+Status: install ok installed
+
+Package: expat
+Version: 2.5.0
+Port-Version: 3
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 7cf410dc6519b064d835e70387e82b57c607c9880571ddb2bac918aaa9e99f49
+Description: XML parser library written in C
+Type: Port
+Status: install ok installed
+
+Package: bzip2
+Version: 1.0.8
+Port-Version: 3
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: fb52ee6c2a71dce5d476beaf22f92db18f58026bbaeba801e8f27f4560749d01
+Description: bzip2 is a freely available, patent free, high-quality data compressor. It typically compresses files to within 10% to 15% of the best available techniques (the PPM family of statistical compressors), whilst being around twice as fast at compression and six times faster at decompression.
+Type: Port
+Default-Features: tool
+Status: install ok installed
+
+Package: bzip2
+Feature: tool
+Architecture: arm64-osx
+Multi-Arch: same
+Description: Builds bzip2 executable
+Type: Port
+Status: install ok installed
+
+Package: python3
+Version: 3.10.7
+Port-Version: 5
+Depends: bzip2, expat, gettext, libffi, libiconv, liblzma, openssl, python3, sqlite3, zlib
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 78db3e9229560b909f91968587102663d605394bebf58dbb0bab8a73a5dedbf7
+Description: The Python programming language
+Type: Port
+Status: install ok installed
+
+Package: pybind11
+Version: 2.10.0
+Port-Version: 1
+Depends: python3, vcpkg-cmake, vcpkg-cmake-config
+Architecture: arm64-osx
+Multi-Arch: same
+Abi: 1705fdb738d5e2f3404a532530c0097bcfe621b2e2791e0547c2b3e176474d2c
+Description: pybind11 is a lightweight header-only library that exposes C++ types in Python and vice versa, mainly to create Python bindings of existing C++ code
+Type: Port
+Status: install ok installed
+

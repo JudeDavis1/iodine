@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.25.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/judedavis/OneDrive/Documents/Projects/iodine
+CMAKE_SOURCE_DIR = /Users/judedavis/local/iodine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/judedavis/OneDrive/Documents/Projects/iodine/build
+CMAKE_BINARY_DIR = /Users/judedavis/local/iodine/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/OneDrive/Documents/Projects/iodine/build/CMakeFiles /Users/judedavis/OneDrive/Documents/Projects/iodine/build/Iodine/Core/Shaders//CMakeFiles/progress.marks
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Shaders/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/OneDrive/Documents/Projects/iodine/build/CMakeFiles 0
+	cd /Users/judedavis/local/iodine/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/local/iodine/build/CMakeFiles /Users/judedavis/local/iodine/build/Iodine/Core/Shaders//CMakeFiles/progress.marks
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Shaders/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/judedavis/local/iodine/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Shaders/clean
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Shaders/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Shaders/preinstall
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Shaders/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Shaders/preinstall
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Shaders/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/judedavis/local/iodine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 Iodine/Core/Shaders/CMakeFiles/Shaders.dir/rule:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Shaders/CMakeFiles/Shaders.dir/rule
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Iodine/Core/Shaders/CMakeFiles/Shaders.dir/rule
 .PHONY : Iodine/Core/Shaders/CMakeFiles/Shaders.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ Shaders: Iodine/Core/Shaders/CMakeFiles/Shaders.dir/rule
 
 # fast build rule for target.
 Shaders/fast:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Shaders/CMakeFiles/Shaders.dir/build.make Iodine/Core/Shaders/CMakeFiles/Shaders.dir/build
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Shaders/CMakeFiles/Shaders.dir/build.make Iodine/Core/Shaders/CMakeFiles/Shaders.dir/build
 .PHONY : Shaders/fast
 
 Shader.o: Shader.cc.o
@@ -135,7 +135,7 @@ Shader.o: Shader.cc.o
 
 # target to build an object file
 Shader.cc.o:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Shaders/CMakeFiles/Shaders.dir/build.make Iodine/Core/Shaders/CMakeFiles/Shaders.dir/Shader.cc.o
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Shaders/CMakeFiles/Shaders.dir/build.make Iodine/Core/Shaders/CMakeFiles/Shaders.dir/Shader.cc.o
 .PHONY : Shader.cc.o
 
 Shader.i: Shader.cc.i
@@ -143,7 +143,7 @@ Shader.i: Shader.cc.i
 
 # target to preprocess a source file
 Shader.cc.i:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Shaders/CMakeFiles/Shaders.dir/build.make Iodine/Core/Shaders/CMakeFiles/Shaders.dir/Shader.cc.i
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Shaders/CMakeFiles/Shaders.dir/build.make Iodine/Core/Shaders/CMakeFiles/Shaders.dir/Shader.cc.i
 .PHONY : Shader.cc.i
 
 Shader.s: Shader.cc.s
@@ -151,7 +151,7 @@ Shader.s: Shader.cc.s
 
 # target to generate assembly for a file
 Shader.cc.s:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Shaders/CMakeFiles/Shaders.dir/build.make Iodine/Core/Shaders/CMakeFiles/Shaders.dir/Shader.cc.s
+	cd /Users/judedavis/local/iodine/build && $(MAKE) $(MAKESILENT) -f Iodine/Core/Shaders/CMakeFiles/Shaders.dir/build.make Iodine/Core/Shaders/CMakeFiles/Shaders.dir/Shader.cc.s
 .PHONY : Shader.cc.s
 
 # Help Target
@@ -177,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/judedavis/OneDrive/Documents/Projects/iodine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/judedavis/local/iodine/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

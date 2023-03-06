@@ -7,7 +7,7 @@ cmake_minimum_required (VERSION 3.8)
 include ( /opt/vcpkg/scripts/buildsystems/vcpkg.cmake )
 
 # Add source to this project's executable.
-add_executable (Iodate "Main.cc" "Application.cc" "Application.h" "Window.cc")
+add_executable (Iodate "Main.cc" "Application.cc" "Application.h" "Window.cc" "Window.h")
 
 
 include (${CMAKE_SOURCE_DIR}/CMake/functions.cmake)
@@ -32,5 +32,6 @@ target_link_libraries(Iodate PUBLIC glm::glm)
 
 target_link_libraries(Iodate PUBLIC API)
 target_link_libraries(Iodate PUBLIC Renderer)
+target_link_libraries(Iodate PUBLIC Engine)
 
 

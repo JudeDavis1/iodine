@@ -6,10 +6,9 @@
 #include <GLFW/glfw3.h>
 
 
-namespace Idn
-{
-	struct ImageFmt
-	{
+namespace Idn {
+
+	struct ImageFmt {
 		const uint8_t* data;
 
 		int channels;

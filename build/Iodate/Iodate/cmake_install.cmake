@@ -1,4 +1,4 @@
-# Install script for directory: /Users/judedavis/OneDrive/Documents/Projects/iodine/Iodate/Iodate
+# Install script for directory: /Users/judedavis/local/iodine/Iodate/Iodate
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
