@@ -8,6 +8,8 @@ class Engine {
 public:
     Engine();
     void Run();
+    void InstallDeps();
+
     ~Engine();
 };
 
