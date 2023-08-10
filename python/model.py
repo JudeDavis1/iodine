@@ -184,7 +184,7 @@ class HandDTTR(nn.Module):
     
     def _conv_block(self, in_dim, out_dim, reduction=True):
         layers = [
-            nn.Conv2d(in_dim, out_dim, self._kernel_size, stride=3),
+            nn.Conv2d(in_dim, out_dim, self._kernel_size, stride=1),
             nn.BatchNorm2d(out_dim),
             nn.ReLU(inplace=True),
         ]

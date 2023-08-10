@@ -31,7 +31,7 @@ def main():
         lr=LR,
         epochs=EPOCHS,
         transform=transform,
-        max_data=10000
+        max_data=40000
     )
     trainer.plot_train_data()
 
