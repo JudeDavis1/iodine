@@ -12,7 +12,7 @@ from tqdm import tqdm
 import config
 
 
-IMG_ROOT = './data/evaluation/rgb'
+IMG_ROOT = './data/training/rgb'
 JSON_ROOT = './data/freihand_train.json'
 N_KEYPOINTS = 21  # standard for this dataset
 UPDATE_INTER = 200
