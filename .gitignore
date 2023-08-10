@@ -4,3 +4,4 @@ CMakeFiles
 CMakePresets.json
 CMakeCache.txt
 build
+__pycache__

@@ -5,15 +5,15 @@ from torchvision import transforms
 from model import Runner
 
 
-
-LR = 0.0008
-EPOCHS = 200
-BATCH_SIZE = 128
+LR = 0.0003
+EPOCHS = 60
+BATCH_SIZE = 96
 MODEL_NAME = './HandDTTR.model'
 
 device = torch.device('mps')
 transform = transforms.Compose([
     transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5), inplace=True),
 ])
 
 def main():
@@ -31,7 +31,7 @@ def main():
         lr=LR,
         epochs=EPOCHS,
         transform=transform,
-        max_data=10000
+        max_data=20000
     )
     trainer.plot_train_data()
 

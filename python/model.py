@@ -141,13 +141,12 @@ class HandDTTR(nn.Module):
         super().__init__()
 
         self._featuremap = 64
-        self._kernel_size = 3
+        self._kernel_size = 4
         self.out_features = 2 * N_KEYPOINTS
         self.bottleneck_input_size = 128
-        self.mh_attn = nn.MultiheadAttention(self.bottleneck_input_size, 8)
         self.feature_extractor = nn.Sequential(
             *self._conv_block(CHANNELS, self._featuremap * 4),
-            *self._conv_block(self._featuremap * 4, self._featuremap * 2, reduction=False),
+            *self._conv_block(self._featuremap * 4, self._featuremap * 2, reduction=True),
             *self._conv_block(self._featuremap * 2, self._featuremap, reduction=False),
             *self._conv_block(self._featuremap, self.out_features, reduction=False),
         )
@@ -158,7 +157,6 @@ class HandDTTR(nn.Module):
         self.regressor = nn.Sequential(
             nn.Linear(self.bottleneck_input_size, self.bottleneck_input_size * 2),
             nn.Linear(self.bottleneck_input_size * 2, self.out_features),
-            nn.Sigmoid(),
         )
 
         self.dropout = nn.Dropout(0.01)
@@ -167,12 +165,7 @@ class HandDTTR(nn.Module):
         features = torch.flatten(self.feature_extractor(x), 1)
         bottleneck_output = self.bottleneck(features)
 
-        query = self.query(bottleneck_output)
-        key = self.key(bottleneck_output)
-        value = self.value(bottleneck_output)
-
-        features, _ = self.mh_attn(query, key, value)
-        logits = self.regressor(features)
+        logits = self.regressor(bottleneck_output)
 
         return logits
 
@@ -184,7 +177,7 @@ class HandDTTR(nn.Module):
     
     def _conv_block(self, in_dim, out_dim, reduction=True):
         layers = [
-            nn.Conv2d(in_dim, out_dim, self._kernel_size, stride=3),
+            nn.Conv2d(in_dim, out_dim, self._kernel_size, stride=2),
             nn.BatchNorm2d(out_dim),
             nn.ReLU(inplace=True),
         ]
