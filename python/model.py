@@ -145,10 +145,10 @@ class HandDTTR(nn.Module):
         self.out_features = 2 * N_KEYPOINTS
         self.bottleneck_input_size = 128
         self.feature_extractor = nn.Sequential(
-            *self._conv_block(CHANNELS, self._featuremap * 4),
+            *self._conv_block(CHANNELS, self._featuremap * 4, reduction=False),
             *self._conv_block(self._featuremap * 4, self._featuremap * 2, reduction=False),
-            *self._conv_block(self._featuremap * 2, self._featuremap, reduction=False),
-            *self._conv_block(self._featuremap, self.out_features, reduction=False),
+            *self._conv_block(self._featuremap * 2, self._featuremap, reduction=True),
+            *self._conv_block(self._featuremap, self.out_features, reduction=True),
         )
         self.bottleneck = nn.LazyLinear(self.bottleneck_input_size)
         self.regressor = nn.Sequential(
