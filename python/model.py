@@ -61,7 +61,7 @@ class Runner:
             self.model.parameters(),
             self.lr
         )
-        criterion = LogCoshLoss()
+        criterion = nn.MSELoss()
 
         # use this to make the batch selection easier
         loader = DataLoader(
