@@ -73,23 +73,23 @@ class Runner:
         try:
             print('[*] Beginning training...')
             for _ in (t := tqdm(range(1, self.epochs + 1))):
-                optimizer.zero_grad(set_to_none=True)
+                for img, y in loader:
+                    optimizer.zero_grad(set_to_none=True)
 
-                # get the next batch from the loader
-                img, y = next(iter(loader))
-                y = y.float().flatten().to(self.device)
-                output: torch.Tensor = self.model(img.to(self.device)).float().flatten()
-                loss: torch.Tensor = criterion(output, y)
+                    # get the next batch from the loader
+                    y = y.float().flatten().to(self.device)
+                    output: torch.Tensor = self.model(img.to(self.device)).float().flatten()
+                    loss: torch.Tensor = criterion(output, y)
 
-                loss.backward()
-                optimizer.step()
+                    loss.backward()
+                    optimizer.step()
 
-                mse = F.mse_loss(output, y)
-                t.set_description(f"Training Loss: {loss:.5f}  MSE: {mse:.5f}")
+                    mse = F.mse_loss(output, y)
+                    t.set_description(f"Training Loss: {loss:.5f}  MSE: {mse:.5f}")
 
-                self.params['mse'].append(mse.cpu().detach().numpy())
-                self.params['loss'].append(loss.cpu().detach().numpy())
-            self.model.save('HandDTTR.model')
+                    self.params['mse'].append(mse.cpu().detach().numpy())
+                    self.params['loss'].append(loss.cpu().detach().numpy())
+                self.model.save('HandDTTR.model')
         except KeyboardInterrupt:
             self.model.save('HandDTTR.model')
             print('Saved!')
@@ -144,7 +144,6 @@ class HandDTTR(nn.Module):
         self._kernel_size = 3
         self.out_features = 2 * N_KEYPOINTS
         self.bottleneck_input_size = 128
-        self.mh_attn = nn.MultiheadAttention(self.bottleneck_input_size, 8)
         self.feature_extractor = nn.Sequential(
             *self._conv_block(CHANNELS, self._featuremap * 4),
             *self._conv_block(self._featuremap * 4, self._featuremap * 2, reduction=False),
@@ -152,13 +151,10 @@ class HandDTTR(nn.Module):
             *self._conv_block(self._featuremap, self.out_features, reduction=False),
         )
         self.bottleneck = nn.LazyLinear(self.bottleneck_input_size)
-        self.key = nn.Linear(self.bottleneck_input_size, self.bottleneck_input_size)
-        self.query = nn.Linear(self.bottleneck_input_size, self.bottleneck_input_size)
-        self.value = nn.Linear(self.bottleneck_input_size, self.bottleneck_input_size)
         self.regressor = nn.Sequential(
             nn.Linear(self.bottleneck_input_size, self.bottleneck_input_size * 2),
             nn.Linear(self.bottleneck_input_size * 2, self.out_features),
-            nn.Sigmoid(),
+            nn.Sigmoid()
         )
 
         self.dropout = nn.Dropout(0.01)
@@ -166,13 +162,7 @@ class HandDTTR(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         features = torch.flatten(self.feature_extractor(x), 1)
         bottleneck_output = self.bottleneck(features)
-
-        query = self.query(bottleneck_output)
-        key = self.key(bottleneck_output)
-        value = self.value(bottleneck_output)
-
-        features, _ = self.mh_attn(query, key, value)
-        logits = self.regressor(features)
+        logits = self.regressor(bottleneck_output)
 
         return logits
 

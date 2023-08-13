@@ -7,7 +7,7 @@ from model import Runner
 
 
 LR = 0.0008
-EPOCHS = 200
+EPOCHS = 3
 BATCH_SIZE = 128
 MODEL_NAME = './HandDTTR.model'
 

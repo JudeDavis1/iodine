@@ -20,18 +20,22 @@ UPDATE_INTER = 200
 
 def load_data(max_data, transform=None):
     data = []
-    json_data = json.load(open(JSON_ROOT))
-    random.shuffle(json_data)
+    json_data = json.load(open(JSON_ROOT))['annotations']
+    # random.shuffle(json_data)
 
     t = tqdm(range(max_data), leave=True)
     for i, object in enumerate(json_data):
         if i % UPDATE_INTER == 0:
             t.update(UPDATE_INTER)
-
+        
         img_path = os.path.join(IMG_ROOT, str(object['id']) + '.jpg')
         img = cv2.imread(img_path, cv2.IMREAD_COLOR)
+
         if transform:
-            img = transform(img)
+            try:
+                img = transform(img)
+            except:
+                continue
 
         coords = np.array_split(json_data[i]['keypoints'], N_KEYPOINTS)
         tensor_coords = get_critical_points(coords)
