@@ -22,6 +22,7 @@ for filename in os.listdir('.'):
 "
 
 cd ../../../
+mv data/training/rgb/.jpg data/training/rgb/0.jpg
 
 
 echo "Cleaning up..."
