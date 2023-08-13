@@ -154,7 +154,7 @@ class HandDTTR(nn.Module):
         self.regressor = nn.Sequential(
             nn.Linear(self.bottleneck_input_size, self.bottleneck_input_size * 2),
             nn.Linear(self.bottleneck_input_size * 2, self.out_features),
-            nn.Sigmoid()
+            # nn.Sigmoid()
         )
 
         self.dropout = nn.Dropout(0.01)
