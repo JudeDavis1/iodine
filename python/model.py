@@ -169,8 +169,8 @@ class HandDTTR(nn.Module):
     def save(self, path: str='./model'):
         torch.save(self.state_dict(), path)
 
-    def load(self, path: str):
-        self.load_state_dict(torch.load(path))
+    def load(self, path: str, **kwargs):
+        self.load_state_dict(torch.load(path, **kwargs))
     
     def _conv_block(self, in_dim, out_dim, reduction=True):
         layers = [
