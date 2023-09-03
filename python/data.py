@@ -34,14 +34,15 @@ def load_data(max_data, transform=None):
         if transform:
             try:
                 img = transform(img)
-            except:
+            except Exception as e:
+                print(e)
                 continue
 
         coords = np.array_split(json_data[i]['keypoints'], N_KEYPOINTS)
         tensor_coords = get_critical_points(coords)
 
         # plt.imshow(img)
-        # plt.scatter(tensor_coords[0].detach().numpy() * config.WIDTH, tensor_coords[1].detach().numpy()* config.HEIGHT)
+        # plt.scatter(tensor_coords[0].detach().numpy() * config.WIDTH, tensor_coords[1].detach().numpy() * config.HEIGHT)
         # plt.show()
 
         data_point = [img, tensor_coords]
@@ -63,11 +64,6 @@ def get_critical_points(coords) -> torch.Tensor:
     x = torch.tensor(x) / config.WIDTH
     y = torch.tensor(y) / config.HEIGHT
     return torch.stack([x, y])
-
-def unnormalize(tensor: torch.Tensor, low, high) -> torch.Tensor:
-    std = (tensor - low) / (high - low)
-    scaled_tensor = std * (high - low) + low
-    return scaled_tensor
 
 class IMGDataset(Dataset):
 
