@@ -29,7 +29,7 @@ class Runner:
         dropout: float=0.1,
     ):
         self.device = torch.device(device)
-        self.model = HandDTTR()
+        self.model = HandDTTR(dropout=dropout)
         self.params = {
             'epochs': None,
             'lr': None,
@@ -42,6 +42,7 @@ class Runner:
         epochs: int=10,
         lr: float=0.002,
         batch_size: int=32,
+        gradient_acc: int=4,
         transform: Compose=None,
         max_data: int=5000
     ):
@@ -83,21 +84,39 @@ class Runner:
             shuffle=True
         )
         n_steps = len(loader)
+        total_loss = 0
+        loss_val = None
+
+        n_steps_per_batch = len(loader) // gradient_acc
+        n_steps = self.epochs * (n_steps_per_batch)
         
         try:
             print('[*] Beginning training...')
-            for _ in (t := tqdm(range(1, self.epochs + 1))):
+            for i in (t := tqdm(range(1, self.epochs + 1))):
                 for j, (img, y) in enumerate(loader):
-                    optimizer.zero_grad(set_to_none=True)
+                    cur_step = (i * len(loader)) + j
 
                     # get the next batch from the loader
                     y = y.float().flatten().to(self.device)
                     output: torch.Tensor = self.model(img.to(self.device)).float().flatten()
-                    loss: torch.Tensor = criterion(output, y)
+                    loss: torch.Tensor = criterion(output, y) / gradient_acc
 
                     loss.backward()
                     nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
-                    optimizer.step()
+
+                    total_loss += loss.mean().item()
+
+                    if (cur_step + 1) % gradient_acc == 0 or (cur_step + 1) == n_steps:
+                        optimizer.step()
+                        optimizer.zero_grad(set_to_none=True)
+
+                        loss_val_str = round(loss_val.item(), 6) if loss_val else "N/A"
+
+                        update_num = (j // gradient_acc) + 1
+                        t.set_description(
+                            f"Epoch {i} - Batch: {update_num}/{n_steps_per_batch} - Train loss: {total_loss:.6f}  Validation loss: {loss_val_str}"
+                        )
+                        total_loss = 0
 
                     if j % 5 == 0:
                         self.model.eval()
@@ -106,8 +125,6 @@ class Runner:
                         output_val: torch.Tensor = self.model(img_val.to(self.device)).float().flatten()
                         loss_val: torch.Tensor = criterion(output_val, y_val)
                         self.model.train()
-                    
-                    t.set_description(f"Training Loss: {loss:.5f}  Validation Loss: {loss_val:.5f} {j + 1}/{n_steps}")
 
                 self.params['loss'].append(loss.item())
 
@@ -160,76 +177,6 @@ class LogCoshLoss(nn.Module):
         else:
             raise ValueError('`reduction` must be sum or mean')
 
-
-# class HandDTTR(nn.Module):
-
-#     def __init__(self, dropout=0.1):
-#         super().__init__()
-
-#         self._featuremap = 32
-#         self._kernel_size = 3
-#         self.dropout = dropout
-#         self.out_features = 2 * N_KEYPOINTS
-#         self.bottleneck_input_size = 64
-#         self.feature_extractor = nn.Sequential(
-#             ResidualBlock(CHANNELS, self._featuremap, stride=1),
-#             ResidualBlock(self._featuremap, self._featuremap * 2, stride=1),
-#             ResidualBlock(self._featuremap * 2, self._featuremap * 4, stride=2),
-#             ResidualBlock(self._featuremap * 4, self._featuremap * 8, stride=2),
-#         )
-#         self.regressor = nn.Sequential(
-#             nn.Linear(self._get_conv_output_shape(self.feature_extractor), self.bottleneck_input_size),
-#             nn.Dropout(dropout),
-#         )
-
-#         self.head = nn.Linear(self.bottleneck_input_size, self.out_features)
-
-#     def forward(self, x: torch.Tensor) -> torch.Tensor:
-#         features: torch.Tensor = self.feature_extractor(x)
-#         features = features.view(features.shape[0], -1)
-#         features_output = F.dropout(features, self.dropout)
-#         logits = self.regressor(features_output)
-
-#         return self.head(logits)
-
-#     def save(self, path: str='./model'):
-#         torch.save(self.state_dict(), path)
-
-#     def load(self, path: str, **kwargs):
-#         self.load_state_dict(torch.load(path, **kwargs))
-    
-#     def _get_conv_output_shape(self, layer: nn.Module):
-#         sample_data = torch.randn(1, CHANNELS, config.HEIGHT, config.WIDTH)
-#         output = layer(sample_data).flatten()
-#         return output.shape[0]
-
-
-# class ResidualBlock(nn.Module):
-#     def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1):
-#         super().__init__()
-
-#         self.reduction = nn.Sequential(
-#             nn.Conv2d(in_channels, in_channels // 2, kernel_size=1, stride=1),
-#             nn.BatchNorm2d(in_channels // 2),
-#         )
-#         self.conv1 = nn.Conv2d(in_channels // 2, out_channels, kernel_size, stride, padding)
-#         self.bn1 = nn.BatchNorm2d(out_channels)
-#         self.relu = nn.ReLU(inplace=True)
-#         self.conv2 = nn.Conv2d(out_channels, out_channels, kernel_size, 1, padding)
-#         self.bn2 = nn.BatchNorm2d(out_channels)
-#         self.downsample = nn.Sequential(
-#             nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=stride),
-#             nn.BatchNorm2d(out_channels),
-#         )
-    
-#     def forward(self, x):
-#         identity = x
-#         out = self.relu(self.bn1(self.conv1(self.reduction(x))))
-#         out = self.bn2(self.conv2(out))
-#         identity = self.downsample(identity)
-#         out += identity
-#         out = self.relu(out)
-#         return out
     
 class HandDTTR(nn.Module):
     def __init__(self):
@@ -271,7 +218,7 @@ class HandDTTR(nn.Module):
         self.load_state_dict(torch.load(path, **kwargs))
 
 def darknet_block(in_channels, out_channels):
-    return nn.Sequential(
+    block = nn.Sequential(
         nn.Conv2d(in_channels, out_channels, 3, padding=1),
         nn.BatchNorm2d(out_channels),
         nn.LeakyReLU(0.1),
@@ -282,3 +229,21 @@ def darknet_block(in_channels, out_channels):
         nn.BatchNorm2d(out_channels),
         nn.LeakyReLU(0.1)
     )
+    return ResidualBlock(in_channels, out_channels, block)
+
+class ResidualBlock(nn.Module):
+    def __init__(self, in_channels, out_channels, block):
+        super(ResidualBlock, self).__init__()
+        self.block = block
+        self.shortcut = nn.Sequential()
+        if in_channels != out_channels:
+            self.shortcut = nn.Sequential(
+                nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=1, padding=0),
+                nn.BatchNorm2d(out_channels)
+            )
+
+    def forward(self, x):
+        identity = x
+        out = self.block(x)
+        out += self.shortcut(identity)
+        return out

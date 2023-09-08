@@ -5,12 +5,13 @@ from torchvision import transforms
 from model import Runner
 
 
-LR = 0.0001
-EPOCHS = 7
-BATCH_SIZE = 64
+LR = 0.00008
+EPOCHS = 20
+BATCH_SIZE = 48
+GRADIENT_ACC = 2
 MODEL_NAME = './HandDTTR.model'
 
-device = torch.device('mps')
+device = torch.device('cuda')
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
@@ -34,9 +35,10 @@ def main():
         batch_size=BATCH_SIZE,
         lr=LR,
         epochs=EPOCHS,
+        gradient_acc=GRADIENT_ACC,
 
         transform=transform,
-        max_data=50_000,
+        max_data=5000,
     )
     trainer.plot_train_data()
 
