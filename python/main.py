@@ -4,18 +4,26 @@ warnings.filterwarnings('ignore')
 import cv2
 import time
 import torch
+import json
 
 import config
 
 from train import transform
 from model import Runner
-from data import N_KEYPOINTS
+from data import N_KEYPOINTS, GaussianNormalizer
 
 
-vc = cv2.VideoCapture(0)
+vc = cv2.VideoCapture(1)
 runner = Runner(device=torch.device('mps'))
 runner.model.load("./HandDTTR.model", map_location='cpu')
 runner.model.eval()
+
+norm_: dict = json.load(open('./data/normalization.json', 'r'))
+
+y_normalizer = GaussianNormalizer(
+    mean=norm_['y_mean'],
+    std=norm_['y_std'],
+)
 
 runner.model = runner.model.to('mps')
 
@@ -29,16 +37,15 @@ def run():
         _, og_frame = vc.read()
         if og_frame is None: print("DEBUG: FRAME IS NONE")
         og_frame = cv2.resize(og_frame, (WIDTH, HEIGHT))
-        input_tensor: torch.Tensor = transform(og_frame)
+        input_tensor: torch.Tensor = transform(og_frame).to('mps', non_blocking=True)
         
-        x_coords, y_coords = runner.predict(input_tensor.to('mps', non_blocking=True))
+        x_coords, y_coords = runner.predict(input_tensor, y_normalizer)
         x_coords, y_coords = x_coords.astype(int), y_coords.astype(int)
         image = og_frame.copy()
         for j in range(N_KEYPOINTS):
             image = cv2.circle(image, (x_coords[j], y_coords[j]), radius=4, thickness=-1, color=(65, 10, 10))
         
         image = cv2.flip(image, 1)
-        time.sleep(0.01)
         cv2.imshow('winname', image)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
