@@ -147,7 +147,6 @@ class Runner:
     def plot_train_data(self):
         epoch_range = list(range(self.params['epochs']))
         plt.plot(epoch_range, self.params['loss'])
-        plt.plot(epoch_range, self.params['mse'])
         plt.legend(["loss", "MSE"], loc='lower right')
 
         plt.show()
@@ -179,7 +178,7 @@ class LogCoshLoss(nn.Module):
 
     
 class HandDTTR(nn.Module):
-    def __init__(self):
+    def __init__(self, dropout: float=0.1):
         super(HandDTTR, self).__init__()
         
         # Darknet-53 backbone (simplified)
@@ -187,15 +186,15 @@ class HandDTTR(nn.Module):
         self.feature_extractor = nn.Sequential(
             nn.Conv2d(CHANNELS, 32, self._kernel_size, padding=1),
             nn.LeakyReLU(0.1),
-            darknet_block(32, 64),
+            darknet_block(32, 64, dropout),
             nn.MaxPool2d(2, 2),
-            darknet_block(64, 128),
+            darknet_block(64, 128, dropout),
             nn.MaxPool2d(2, 2),
-            darknet_block(128, 256),
+            darknet_block(128, 256, dropout),
             nn.MaxPool2d(2, 2),
-            darknet_block(256, 512),
+            darknet_block(256, 512, dropout),
             nn.MaxPool2d(2, 2),
-            darknet_block(512, 1024),
+            darknet_block(512, 1024, dropout),
         )
         
         # Keypoint predictor
@@ -217,17 +216,25 @@ class HandDTTR(nn.Module):
     def load(self, path: str, **kwargs):
         self.load_state_dict(torch.load(path, **kwargs))
 
-def darknet_block(in_channels, out_channels):
+def darknet_block(in_channels, out_channels, dropout: float=0.1):
     block = nn.Sequential(
         nn.Conv2d(in_channels, out_channels, 3, padding=1),
         nn.BatchNorm2d(out_channels),
         nn.LeakyReLU(0.1),
+        
+        nn.Dropout(dropout),
+        
         nn.Conv2d(out_channels, in_channels, 1),
         nn.BatchNorm2d(in_channels),
         nn.LeakyReLU(0.1),
+
+        nn.Dropout(dropout),
+        
         nn.Conv2d(in_channels, out_channels, 3, padding=1),
         nn.BatchNorm2d(out_channels),
-        nn.LeakyReLU(0.1)
+        nn.LeakyReLU(0.1),
+
+        nn.Dropout(dropout),
     )
     return ResidualBlock(in_channels, out_channels, block)
 

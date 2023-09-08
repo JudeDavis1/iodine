@@ -6,7 +6,7 @@ from model import Runner
 
 
 LR = 0.00008
-EPOCHS = 20
+EPOCHS = 2
 BATCH_SIZE = 48
 GRADIENT_ACC = 2
 MODEL_NAME = './HandDTTR.model'
@@ -38,7 +38,7 @@ def main():
         gradient_acc=GRADIENT_ACC,
 
         transform=transform,
-        max_data=5000,
+        max_data=50_000,
     )
     trainer.plot_train_data()
 
