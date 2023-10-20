@@ -5,10 +5,10 @@ from torchvision import transforms
 from model import Runner
 
 
-LR = 0.00008
-EPOCHS = 2
+LR = 1e-4
+EPOCHS = 10
 BATCH_SIZE = 48
-GRADIENT_ACC = 2
+GRADIENT_ACC = 4
 MODEL_NAME = './HandDTTR.model'
 
 device = torch.device('cuda')
@@ -38,7 +38,7 @@ def main():
         gradient_acc=GRADIENT_ACC,
 
         transform=transform,
-        max_data=50_000,
+        max_data=100_000,
     )
     trainer.plot_train_data()
 

@@ -36,6 +36,8 @@ class Runner:
             'mse': [],
             'loss': []
         }
+
+        self.model.apply(weights_init)
     
     def fit(
         self,
@@ -118,7 +120,7 @@ class Runner:
                         )
                         total_loss = 0
 
-                    if j % 5 == 0:
+                    if cur_step % 5 == 0:
                         self.model.eval()
                         img_val, y_val = next(iter(val_loader))
                         y_val = y_val.float().flatten().to(self.device)
@@ -183,22 +185,23 @@ class HandDTTR(nn.Module):
         
         # Darknet-53 backbone (simplified)
         self._kernel_size = 3
+        self._featuremap = 32
         self.feature_extractor = nn.Sequential(
-            nn.Conv2d(CHANNELS, 32, self._kernel_size, padding=1),
+            nn.Conv2d(CHANNELS, self._featuremap, self._kernel_size, padding=1),
             nn.LeakyReLU(0.1),
-            darknet_block(32, 64, dropout),
+            darknet_block(self._featuremap, self._featuremap * 2, dropout),
             nn.MaxPool2d(2, 2),
-            darknet_block(64, 128, dropout),
+            darknet_block(self._featuremap * 2, self._featuremap * 4, dropout),
             nn.MaxPool2d(2, 2),
-            darknet_block(128, 256, dropout),
+            darknet_block(self._featuremap * 4, self._featuremap * 8, dropout),
             nn.MaxPool2d(2, 2),
-            darknet_block(256, 512, dropout),
+            darknet_block(self._featuremap * 8, self._featuremap * 16, dropout),
             nn.MaxPool2d(2, 2),
-            darknet_block(512, 1024, dropout),
+            darknet_block(self._featuremap * 16, self._featuremap * 32, dropout),
         )
         
         # Keypoint predictor
-        self.predictor = nn.Conv2d(1024, 2 * N_KEYPOINTS, 1)
+        self.predictor = nn.Conv2d(self._featuremap * 32, 2 * N_KEYPOINTS, 1)
         
     def forward(self, x):
         features = self.feature_extractor(x)
@@ -222,19 +225,13 @@ def darknet_block(in_channels, out_channels, dropout: float=0.1):
         nn.BatchNorm2d(out_channels),
         nn.LeakyReLU(0.1),
         
-        nn.Dropout(dropout),
-        
         nn.Conv2d(out_channels, in_channels, 1),
         nn.BatchNorm2d(in_channels),
         nn.LeakyReLU(0.1),
-
-        nn.Dropout(dropout),
         
         nn.Conv2d(in_channels, out_channels, 3, padding=1),
         nn.BatchNorm2d(out_channels),
         nn.LeakyReLU(0.1),
-
-        nn.Dropout(dropout),
     )
     return ResidualBlock(in_channels, out_channels, block)
 
@@ -254,3 +251,14 @@ class ResidualBlock(nn.Module):
         out = self.block(x)
         out += self.shortcut(identity)
         return out
+
+
+def weights_init(m: nn.Module):
+    classname = m.__class__.__name__
+    
+    if classname.find('Conv') != -1:
+        nn.init.normal_(m.weight.data, 0.0, 0.02)
+    
+    elif classname.find('BatchNorm') != -1:
+        nn.init.normal_(m.weight.data, 1.0, 0.02)
+        nn.init.constant_(m.bias.data, 0)
